@@ -1,0 +1,68 @@
+{
+  "name": "af-documents",
+  "version": "1.0.0",
+  "description": "A library for managing Documents with Properties",
+  "main": "dist/lib/index.js",
+  "scripts": {
+    "compile": "npm run lint && ./node_modules/.bin/tsc",
+    "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | coveralls",
+    "dist": "npm test && npm run compile",
+    "lint": "./node_modules/.bin/tslint --project .",
+    "test": "./node_modules/.bin/nyc ./node_modules/.bin/mocha"
+  },
+  "files": [
+    "dist"
+  ],
+  "nyc": {
+    "include": [
+      "src"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "reporter": [
+      "html",
+      "lcov"
+    ],
+    "all": true,
+    "report-dir": "./reports/coverage"
+  },
+  "author": "Michael Coakley <mcoakley@acmeframework.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acmeframework/af-documents"
+  },
+  "bugs": {
+    "url": "https://github.com/acmeframework/af-documents/issues"
+  },
+  "homepage": "https://github.com/acmeframework/af-documents",
+  "license": "MIT",
+  "dependencies": {
+    "af-conditionals": "^1.1.0",
+    "async-wait-until": "^1.2.4",
+    "eventemitter3": "^4.0.0",
+    "lodash": "^4.17.15",
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/lodash": "^4.14.136",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.8",
+    "@types/sinon": "^7.0.13",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.5",
+    "mocha": "^6.2.0",
+    "mochawesome": "^4.0.1",
+    "nyc": "^14.1.1",
+    "sinon": "^7.3.2",
+    "source-map-support": "^0.5.12",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "typedoc": "^0.14.2",
+    "typescript": "^3.5.2"
+  }
+}

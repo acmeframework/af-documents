@@ -1,5 +1,3 @@
-import waitUntil from 'async-wait-until';
-
 import { Entity } from '../../entity';
 import { DocumentEntity } from '../document';
 import {
@@ -33,20 +31,6 @@ export class SequentialValidationStrategy<
     for (const entity of entities) {
       let _valid: boolean;
       if (entity instanceof Entity) {
-        // ! This code block is needed IF the document has mutable fields.
-        // ! See test #3 for a description of the potential problem.
-        if (entity.isValidating()) {
-          // This await will either succeed or timeout with an
-          // Exception. If it succeeds we process as normal.
-          await waitUntil(
-            (): boolean => {
-              return !entity.isValidating();
-            },
-            this.options.validationWaitTimeout,
-            this.options.validationWaitInterval
-          );
-        }
-
         _valid = await entity.validate();
       } else {
         // It can only be an array, since that is all we build
