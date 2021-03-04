@@ -1,5 +1,6 @@
-import { Normalizer, NormalizerOptions } from './normalizer';
+import { Normalizer, NormalizerOptions } from "./normalizer";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface NoopNormalizerOptions extends NormalizerOptions {}
 
 export class NoopNormalizer<

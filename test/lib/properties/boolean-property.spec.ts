@@ -1,6 +1,6 @@
-import 'mocha';
+import "mocha";
 
-import { expect } from 'chai';
+import { expect } from "chai";
 
 import {
   BooleanProperty,
@@ -9,19 +9,17 @@ import {
   DEFAULT_BOOLEAN_PROPERTY_OPTIONS,
   DEFAULT_ENTITY_OPTIONS,
   DEFAULT_PROPERTY_OPTIONS,
-} from '../../../src/lib';
+} from "../../../src/lib";
 
-// tslint:disable:no-unused-expression
-
-describe('BooleanProperty class', function() {
-  const PROPERTY_NAME = 'String Property';
+describe("BooleanProperty class", function () {
+  const PROPERTY_NAME = "String Property";
   const BOOLEAN_DATA = false;
 
-  describe('Test the factory method', function() {
+  describe("Test the factory method", function () {
     const dbpo = {
       ...DEFAULT_ENTITY_OPTIONS,
       ...DEFAULT_PROPERTY_OPTIONS,
-      ...DEFAULT_BOOLEAN_PROPERTY_OPTIONS
+      ...DEFAULT_BOOLEAN_PROPERTY_OPTIONS,
     };
     let bp: BooleanProperty;
 
@@ -30,18 +28,18 @@ describe('BooleanProperty class', function() {
       expect(bpo).to.deep.equal(dbpo);
     }
 
-    it('creates a BooleanProperty with all defaults', function() {
+    it("creates a BooleanProperty with all defaults", function () {
       bp = booleanPropertyFactory(BOOLEAN_DATA);
       expect(bp).to.be.an.instanceof(BooleanProperty);
 
       const bc = BooleanProperty.getPropertyCount();
-      const dn = DEFAULT_BOOLEAN_PROPERTY_NAME + '_' + bc;
+      const dn = DEFAULT_BOOLEAN_PROPERTY_NAME + "_" + bc;
       dbpo.name = dn;
       dbpo.displayName = dn;
       testOptions();
     });
 
-    it('creates a BooleanProperty passing in options', function() {
+    it("creates a BooleanProperty passing in options", function () {
       bp = booleanPropertyFactory(
         BOOLEAN_DATA,
         undefined,
@@ -52,7 +50,7 @@ describe('BooleanProperty class', function() {
       expect(bp).to.be.an.instanceof(BooleanProperty);
     });
 
-    it('creates a BooleanProperty with a supplied name', function() {
+    it("creates a BooleanProperty with a supplied name", function () {
       bp = booleanPropertyFactory(BOOLEAN_DATA, PROPERTY_NAME);
       expect(bp).to.be.an.instanceof(BooleanProperty);
 

@@ -1,13 +1,13 @@
-import { isUsable } from 'af-conditionals';
+import { isUsable } from "af-conditionals";
 
-import { NumberPropertyOptions } from '../number-property';
+import { NumberPropertyOptions } from "../number-property";
 import {
   DEFAULT_NUMBER_BOUNDS,
   DEFAULT_NUMBER_MAX_VALUE,
   DEFAULT_NUMBER_MIN_VALUE,
   NumberBoundTypes,
-} from '../number-property-defs';
-import { Validator, ValidatorOptions } from './validator';
+} from "../number-property-defs";
+import { Validator, ValidatorOptions } from "./validator";
 
 export interface NumberValidatorOptions extends ValidatorOptions {
   maxValue?: number;
@@ -25,9 +25,9 @@ export class NumberValidator<
       if (!valid) {
         this.addInvalidError([
           this.options.displayName +
-            ' cannot be less than the minimum value. (' +
+            " cannot be less than the minimum value. (" +
             this.options.minValue +
-            ')'
+            ")",
         ]);
       }
     }
@@ -36,16 +36,16 @@ export class NumberValidator<
       if (!valid) {
         this.addInvalidError([
           this.options.displayName +
-            ' cannot be greater than the maximum value. (' +
+            " cannot be greater than the maximum value. (" +
             this.options.maxValue +
-            ')'
+            ")",
         ]);
       }
     }
     return Promise.resolve(valid);
   }
 
-  protected _validateOptions(newOptions: O) {
+  protected _validateOptions(newOptions: O): void {
     super._validateOptions(newOptions);
 
     const haveParent = isUsable(this.options.parent);
@@ -87,7 +87,7 @@ export class NumberValidator<
       this.options.maxValue !== DEFAULT_NUMBER_MAX_VALUE
     ) {
       if (this.options.minValue > this.options.maxValue) {
-        throw new RangeError('When set, minValue must be less than maxValue.');
+        throw new RangeError("When set, minValue must be less than maxValue.");
       }
     }
     if (this.options.numberBounds === NumberBoundTypes.max_safe_integer) {
@@ -96,8 +96,8 @@ export class NumberValidator<
         this.options.maxValue > Number.MAX_SAFE_INTEGER
       ) {
         throw new RangeError(
-          'Bounded by MIN/MAX Javascript safe ' +
-            'integers and minValue or maxValue are outside that range.'
+          "Bounded by MIN/MAX Javascript safe " +
+            "integers and minValue or maxValue are outside that range."
         );
       }
     }

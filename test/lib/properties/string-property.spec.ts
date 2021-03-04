@@ -1,6 +1,6 @@
-import 'mocha';
+import "mocha";
 
-import { expect } from 'chai';
+import { expect } from "chai";
 
 import {
   DEFAULT_ENTITY_OPTIONS,
@@ -9,19 +9,17 @@ import {
   DEFAULT_STRING_PROPERTY_OPTIONS,
   StringProperty,
   stringPropertyFactory,
-} from '../../../src/lib';
+} from "../../../src/lib";
 
-// tslint:disable:no-unused-expression
+describe("StringProperty class", function () {
+  const PROPERTY_NAME = "String Property";
+  const STRING_DATA = "Hello World";
 
-describe('StringProperty class', function() {
-  const PROPERTY_NAME = 'String Property';
-  const STRING_DATA = 'Hello World';
-
-  describe('Test the factory method', function() {
+  describe("Test the factory method", function () {
     const dspo = {
       ...DEFAULT_ENTITY_OPTIONS,
       ...DEFAULT_PROPERTY_OPTIONS,
-      ...DEFAULT_STRING_PROPERTY_OPTIONS
+      ...DEFAULT_STRING_PROPERTY_OPTIONS,
     };
     // const dspo = cloneDeep(tempAllOptions);
     let sp: StringProperty;
@@ -31,18 +29,18 @@ describe('StringProperty class', function() {
       expect(spo).to.deep.equal(dspo);
     }
 
-    it('creates a StringProperty with all defaults', function() {
+    it("creates a StringProperty with all defaults", function () {
       sp = stringPropertyFactory(STRING_DATA);
       expect(sp).to.be.an.instanceof(StringProperty);
 
       const sc = StringProperty.getPropertyCount();
-      const dn = DEFAULT_STRING_PROPERTY_NAME + '_' + sc;
+      const dn = DEFAULT_STRING_PROPERTY_NAME + "_" + sc;
       dspo.name = dn;
       dspo.displayName = dn;
       testOptions();
     });
 
-    it('creates a StringProperty with a supplied name', function() {
+    it("creates a StringProperty with a supplied name", function () {
       sp = stringPropertyFactory(STRING_DATA, PROPERTY_NAME);
       expect(sp).to.be.an.instanceof(StringProperty);
 

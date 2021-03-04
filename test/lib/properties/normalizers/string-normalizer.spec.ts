@@ -1,6 +1,6 @@
-import 'mocha';
+import "mocha";
 
-import { expect } from 'chai';
+import { expect } from "chai";
 
 import {
   DEFAULT_STRING_NORMALIZE_TO_LOWER,
@@ -11,16 +11,14 @@ import {
   StringNormalizerOptions,
   StringProperty,
   StringPropertyOptions,
-} from '../../../../src/lib';
+} from "../../../../src/lib";
 
-// tslint:disable:no-unused-expression no-null-keyword no-console
+describe("StringNormalizer class", function () {
+  const NORMALIZER_NAME = "Test Normalizer";
+  const STRING_DATA = "   Hello World   ";
 
-describe('StringNormalizer class', function() {
-  const NORMALIZER_NAME = 'Test Normalizer';
-  const STRING_DATA = '   Hello World   ';
-
-  describe('Test the constructor and options', function() {
-    it('tests construction of the object with options to test all paths', function() {
+  describe("Test the constructor and options", function () {
+    it("tests construction of the object with options to test all paths", function () {
       expect(
         new StringNormalizer({ name: NORMALIZER_NAME })
       ).to.be.an.instanceof(StringNormalizer);
@@ -29,26 +27,27 @@ describe('StringNormalizer class', function() {
         StringNormalizer
       );
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       expect(new StringNormalizer(null)).to.be.an.instanceof(StringNormalizer);
 
-      expect(new StringNormalizer({ name: '' })).to.be.an.instanceof(
+      expect(new StringNormalizer({ name: "" })).to.be.an.instanceof(
         StringNormalizer
       );
 
-      expect(function() {
+      expect(function () {
         const sn = new StringNormalizer({
           normalizeToLower: true,
-          normalizeToUpper: true
+          normalizeToUpper: true,
         });
-        console.log('SN = ' + JSON.stringify(sn.getOptions()));
+        console.log("SN = " + JSON.stringify(sn.getOptions()));
       }).to.throw(TypeError);
 
       const spo: StringPropertyOptions = {
         name: NORMALIZER_NAME,
         normalizeToLower: true,
         trimLeft: true,
-        trimRight: true
+        trimRight: true,
       };
 
       let gp = new StringProperty(STRING_DATA, spo);
@@ -73,9 +72,9 @@ describe('StringNormalizer class', function() {
       expect(sno).to.deep.equal(testOptions);
     }
 
-    it('ensures all options have valid values', function() {
+    it("ensures all options have valid values", function () {
       const loadOptions: StringNormalizerOptions = {
-        name: NORMALIZER_NAME
+        name: NORMALIZER_NAME,
       };
 
       // All defaults (displayName = name by default)
@@ -85,7 +84,7 @@ describe('StringNormalizer class', function() {
         normalizeToLower: DEFAULT_STRING_NORMALIZE_TO_LOWER,
         normalizeToUpper: DEFAULT_STRING_NORMALIZE_TO_UPPER,
         trimLeft: DEFAULT_STRING_TRIM_LEFT,
-        trimRight: DEFAULT_STRING_TRIM_RIGHT
+        trimRight: DEFAULT_STRING_TRIM_RIGHT,
       };
 
       // Test defaults
@@ -111,46 +110,46 @@ describe('StringNormalizer class', function() {
     });
   });
 
-  describe('Testing functionality of the class as a string', function() {
-    const STRING_DATA_DEFAULT = 'Hello World';
-    const STRING_DATA_LOWER = 'hello world';
-    const STRING_DATA_UPPER = 'HELLO WORLD';
-    const STRING_DATA_TRIMLEFT = 'Hello World   ';
-    const STRING_DATA_TRIMRIGHT = '   Hello World';
+  describe("Testing functionality of the class as a string", function () {
+    const STRING_DATA_DEFAULT = "Hello World";
+    const STRING_DATA_LOWER = "hello world";
+    const STRING_DATA_UPPER = "HELLO WORLD";
+    const STRING_DATA_TRIMLEFT = "Hello World   ";
+    const STRING_DATA_TRIMRIGHT = "   Hello World";
 
     const TEST_OPTIONS = [
       {},
       { normalizeToLower: true },
       { normalizeToUpper: true },
       { trimRight: false },
-      { trimLeft: false }
+      { trimLeft: false },
     ];
 
     let sn: StringNormalizer;
     let testNumber = 0;
 
-    beforeEach(function() {
+    beforeEach(function () {
       const options = TEST_OPTIONS[testNumber++];
       sn = new StringNormalizer(options);
     });
 
-    it('validates a default StringNormalizer', function() {
+    it("validates a default StringNormalizer", function () {
       expect(sn.normalize(STRING_DATA)).to.equal(STRING_DATA_DEFAULT);
     });
 
-    it('validates normalization to lower case', function() {
+    it("validates normalization to lower case", function () {
       expect(sn.normalize(STRING_DATA)).to.equal(STRING_DATA_LOWER);
     });
 
-    it('validates normalization to upper case', function() {
+    it("validates normalization to upper case", function () {
       expect(sn.normalize(STRING_DATA)).to.equal(STRING_DATA_UPPER);
     });
 
-    it('validates normalization trim left', function() {
+    it("validates normalization trim left", function () {
       expect(sn.normalize(STRING_DATA)).to.equal(STRING_DATA_TRIMLEFT);
     });
 
-    it('validates normalization trim right', function() {
+    it("validates normalization trim right", function () {
       expect(sn.normalize(STRING_DATA)).to.equal(STRING_DATA_TRIMRIGHT);
     });
   });

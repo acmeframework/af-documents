@@ -1,11 +1,11 @@
-import { isUsable } from 'af-conditionals';
+import { isUsable } from "af-conditionals";
 
-import { StringPropertyOptions } from '../string-property';
+import { StringPropertyOptions } from "../string-property";
 import {
   DEFAULT_STRING_MAX_LENGTH,
   DEFAULT_STRING_MIN_LENGTH,
-} from '../string-property-defs';
-import { Validator, ValidatorOptions } from './validator';
+} from "../string-property-defs";
+import { Validator, ValidatorOptions } from "./validator";
 
 export interface StringValidatorOptions extends ValidatorOptions {
   maxLength?: number;
@@ -24,7 +24,7 @@ export class StringValidator<
 
       if (!valid) {
         this.addInvalidError([
-          this.options.displayName + ' is shorter than the minimum length.'
+          this.options.displayName + " is shorter than the minimum length.",
         ]);
       }
     }
@@ -32,14 +32,14 @@ export class StringValidator<
       valid = value.length <= this.options.maxLength!;
       if (!valid) {
         this.addInvalidError([
-          this.options.displayName + ' is longer than the maximum length.'
+          this.options.displayName + " is longer than the maximum length.",
         ]);
       }
     }
     return Promise.resolve(valid);
   }
 
-  protected _validateOptions(newOptions: O) {
+  protected _validateOptions(newOptions: O): void {
     super._validateOptions(newOptions);
 
     const haveParent = isUsable(this.options.parent);
@@ -59,7 +59,7 @@ export class StringValidator<
       this.options.maxLength > 0 &&
       this.options.minLength > this.options.maxLength
     ) {
-      throw new TypeError('You must provide a valid options object.');
+      throw new TypeError("You must provide a valid options object.");
     }
   }
 }

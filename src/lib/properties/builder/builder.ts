@@ -1,13 +1,13 @@
-import { isUsable } from 'af-conditionals';
+import { isUsable } from "af-conditionals";
 
-import { ImmutableProperty } from '../immutable-property';
-import { Property } from '../property';
+import { ImmutableProperty } from "../immutable-property";
+import { Property } from "../property";
 import {
   propertyAliasMap,
   propertyClassificationMap,
   PropertyDescription,
   PropertyMap,
-} from './describe-property';
+} from "./describe-property";
 
 export function getPropertyDescription(
   propertyName: string,
@@ -23,7 +23,7 @@ export function getPropertyDescription(
 }
 
 export function propertyBuilder(
-  value: any,
+  value: any, // eslint-disable-line @typescript-eslint/explicit-module-boundary-types
   propertyName: string,
   displayName?: string,
   aliasMap?: PropertyMap

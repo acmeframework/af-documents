@@ -1,5 +1,5 @@
-import { isUsable } from 'af-conditionals';
-import cloneDeep from 'lodash/cloneDeep';
+import { isUsable } from "af-conditionals";
+import cloneDeep from "lodash/cloneDeep";
 
 import {
   DEFAULT_ENTITY_OPTIONS,
@@ -7,10 +7,14 @@ import {
   DEFAULT_VALIDATION_WAIT_INTERVAL,
   DEFAULT_VALIDATION_WAIT_TIMEOUT,
   EntityOptions,
-} from '../../entity';
-import { Document, DocumentOptions } from '../document';
+} from "../../entity";
+import { Document, DocumentOptions } from "../document";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ValidationStrategyOptions extends EntityOptions {}
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 export abstract class ValidationStrategy<
   T extends Record<string, any> = Record<string, any>,
@@ -28,15 +32,15 @@ export abstract class ValidationStrategy<
 
       this.options.validationWaitTimeout = this._getParentOption(
         parentOptions,
-        'validationWaitTimeout'
+        "validationWaitTimeout"
       );
       this.options.validationWaitInterval = this._getParentOption(
         parentOptions,
-        'validationWaitInterval'
+        "validationWaitInterval"
       );
       this.options.validationStopOnInvalid = this._getParentOption(
         parentOptions,
-        'validationStopOnInvalid'
+        "validationStopOnInvalid"
       );
     }
   }
@@ -52,8 +56,8 @@ export abstract class ValidationStrategy<
   public async validate(data: T): Promise<boolean> {
     if (this.isValidating()) {
       throw new Error(
-        'A call to validate was made while validation is ' +
-          'already running for this validation strategy.'
+        "A call to validate was made while validation is " +
+          "already running for this validation strategy."
       );
     }
     this.validating = true;
@@ -64,7 +68,7 @@ export abstract class ValidationStrategy<
     }
   }
 
-  protected abstract async _validate(date: T): Promise<boolean>;
+  protected abstract _validate(date: T): Promise<boolean>;
 
   protected _getParentOption(
     parentOptions: DocumentOptions,

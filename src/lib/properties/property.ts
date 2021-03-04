@@ -1,8 +1,8 @@
-import { isArray, isEmpty, isUsable } from 'af-conditionals';
-import waitUntil from 'async-wait-until';
+import { isArray, isEmpty, isUsable } from "af-conditionals";
+import waitUntil from "async-wait-until";
 
-import { Entity, EntityOptions } from '..';
-import { Normalizer } from './normalizers';
+import { Entity, EntityOptions } from "..";
+import { Normalizer } from "./normalizers";
 import {
   DEFAULT_INVALID_IF_NOT_REQUIRED_AND_EMPTY,
   DEFAULT_NORMALIZE_AFTER_SET,
@@ -17,11 +17,11 @@ import {
   PROPERTY_VALUE_SET_EVENT,
   PropertyValidationEvent,
   PropertyValueChangeEvent,
-} from './property-defs';
-import { RequiredValidator, Validator, ValidatorError } from './validators';
+} from "./property-defs";
+import { RequiredValidator, Validator, ValidatorError } from "./validators";
 
 /**
- * PropertyOptions provides options for the Property bsae class.
+ * PropertyOptions provides options for the Property base class.
  *
  * @export
  * @interface PropertyOptions
@@ -59,7 +59,7 @@ export interface PropertyOptions extends EntityOptions {
 
   /**
    * normalizeAfterSet is a boolean flag that will trigger the Property to be
-   * automatically normalized when a value is set. This make it very conveinent
+   * automatically normalized when a value is set. This make it very convenient
    * to keep a value normalized.
    *
    * @type {boolean}
@@ -97,15 +97,15 @@ export interface PropertyOptions extends EntityOptions {
 }
 
 export const DEFAULT_PROPERTY_OPTIONS: Readonly<PropertyOptions> = {
-  displayName: '',
+  displayName: "",
   invalidIfNotRequiredAndEmpty: DEFAULT_INVALID_IF_NOT_REQUIRED_AND_EMPTY,
-  name: '',
+  name: "",
   normalizeAfterSet: DEFAULT_NORMALIZE_AFTER_SET,
   normalizeBeforeValidate: DEFAULT_NORMALIZE_BEFORE_VALIDATE,
   normalizeIfValid: DEFAULT_NORMALIZE_IF_VALID,
   required: DEFAULT_REQUIRED,
   validationWaitInterval: DEFAULT_PROPERTY_VALIDATION_WAIT_INTERVAL,
-  validationWaitTimeout: DEFAULT_PROPERTY_VALIDATION_WAIT_TIMEOUT
+  validationWaitTimeout: DEFAULT_PROPERTY_VALIDATION_WAIT_TIMEOUT,
 };
 
 /**
@@ -237,7 +237,7 @@ export class Property<
    * if the supplied value is allowed to be set for this Property by using the
    * isValueAllowed method. The setter then determines if the newValue is equal
    * to the current value using the isEqual method. Next, if the setter
-   * determines the newVlaue is different from the current value the Property
+   * determines the newValue is different from the current value the Property
    * tracking values are reset (using the reset method) and then an event is
    * emitted so any listeners will be aware of the Property value change.
    * Finally, if the normalizeAfterSet option is set to true the new value will
@@ -247,7 +247,7 @@ export class Property<
    */
   public set value(newValue: T | undefined) {
     if (!this.isValueAllowed(newValue)) {
-      throw new Error(this.options.displayName + ' is not an allowed value.');
+      throw new Error(this.options.displayName + " is not an allowed value.");
     }
     if (this.isEqual(newValue!)) return;
 
@@ -259,7 +259,7 @@ export class Property<
   }
 
   /**
-   * Retreive the current errors based upon the last validate execution.
+   * Retrieve the current errors based upon the last validate execution.
    *
    * @returns {ValidatorError[]}
    * @memberof Property
@@ -284,7 +284,7 @@ export class Property<
   }
 
   /**
-   * Returns true if the Property value "equals" otherValue. Equals is in quites
+   * Returns true if the Property value "equals" otherValue. Equals is in quotes
    * since this method can be written to your needs and therefore may not always
    * be a strict exact equals.
    *
@@ -407,8 +407,8 @@ export class Property<
   public async validate(): Promise<boolean> {
     if (this.validating) {
       throw new Error(
-        'You have called validate() while another' +
-          ' validate() call is running.'
+        "You have called validate() while another" +
+          " validate() call is running."
       );
     }
     if (this.validated) {
@@ -453,13 +453,13 @@ export class Property<
    * @param {boolean} validated
    * @memberof Property
    */
-  protected emitValidated(eventId: string, validated: boolean) {
+  protected emitValidated(eventId: string, validated: boolean): void {
     const event: PropertyValidationEvent<T> = {
       context: this,
       displayName: this.options.displayName!,
       name: this.options.name,
       validated,
-      value: this.value!
+      value: this.value!,
     };
     this.emit(eventId, event, this);
   }
@@ -472,13 +472,16 @@ export class Property<
    * @param {(T | undefined)} previousValue
    * @memberof Property
    */
-  protected emitValueChanged(eventId: string, previousValue: T | undefined) {
+  protected emitValueChanged(
+    eventId: string,
+    previousValue: T | undefined
+  ): void {
     const event: PropertyValueChangeEvent<T> = {
       context: this,
       displayName: this.options.displayName!,
       name: this.options.name,
       previousValue,
-      value: this.value!
+      value: this.value!,
     };
     this.emit(eventId, event, this);
   }
@@ -509,7 +512,9 @@ export class Property<
     //    question
     // 2. The RequiredValidator is written to even handle when a
     //    value is NOT required.
-    this.validators.push(new RequiredValidator<T>({ parent: this }));
+    this.validators.push(
+      new RequiredValidator<T>({ parent: this })
+    );
   }
 
   /**
@@ -531,7 +536,7 @@ export class Property<
   }
 
   /**
-   * Validate our Property value. This method implements an asychronous
+   * Validate our Property value. This method implements an asynchronous
    * validation process. Currently the validators are run in the order they are
    * presented in the validators array. By default all validators will be
    * run to determine the validated state of this Property. If
@@ -588,7 +593,7 @@ export class Property<
    */
   protected _validateOptions(newOptions: O): void {
     if (!isUsable(newOptions.name) || isEmpty(newOptions.name)) {
-      throw new TypeError('Must supply a valid options object.');
+      throw new TypeError("Must supply a valid options object.");
     }
     // We override values that Entity is responsible for,
     // validationWaitInterval and validationWaitTimeout. Therefore, we must

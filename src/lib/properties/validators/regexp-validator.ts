@@ -1,7 +1,7 @@
-import { isUsable } from 'af-conditionals';
+import { isUsable } from "af-conditionals";
 
-import { RegExpPropertyOptions } from '../regexp-property';
-import { StringValidator, StringValidatorOptions } from './string-validator';
+import { RegExpPropertyOptions } from "../regexp-property";
+import { StringValidator, StringValidatorOptions } from "./string-validator";
 
 export interface RegExpValidatorOptions extends StringValidatorOptions {
   // This is marked option here to make implementing a default RegExpValidator
@@ -18,13 +18,13 @@ export class RegExpValidator<
     const valid = this.options.mask!.test(value);
     if (!valid) {
       this.addInvalidError([
-        this.options.displayName + ' is not in the required format.'
+        this.options.displayName + " is not in the required format.",
       ]);
     }
     return Promise.resolve(valid);
   }
 
-  protected _validateOptions(newOptions: O) {
+  protected _validateOptions(newOptions: O): void {
     super._validateOptions(newOptions);
 
     const haveParent = isUsable(this.options.parent);
@@ -39,7 +39,7 @@ export class RegExpValidator<
         !isUsable(this.options.mask) &&
         !isUsable(parentOptions!.mask))
     ) {
-      throw new TypeError('You must supply a valid options object');
+      throw new TypeError("You must supply a valid options object");
     }
     if (haveParent) {
       this.options.mask = this.options.mask || parentOptions!.mask;
