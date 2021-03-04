@@ -1,17 +1,17 @@
-import { isArray, isObject, isString, isUsable } from "af-conditionals";
+import { isArray, isObject, isString, isUsable } from 'af-conditionals';
 
-import { Entity, EntityOptions } from "..";
+import { Entity, EntityOptions } from '..';
 import {
   Property,
   propertyAliasMap,
   propertyBuilder,
   PropertyMap,
   stringPropertyFactory,
-} from "../properties";
+} from '../properties';
 import {
   SequentialValidationStrategy,
   ValidationStrategy,
-} from "./validation-strategies";
+} from './validation-strategies';
 
 export interface DocumentOptions extends EntityOptions {
   validationStrategy?: ValidationStrategy;
@@ -40,7 +40,7 @@ export class Document<
     super(newOptions);
 
     if (!isUsable(rawData)) {
-      throw new TypeError("rawData is not usable.");
+      throw new TypeError('rawData is not usable.');
     }
 
     this.aliasMap = this.aliasMap || propertyAliasMap;
@@ -50,7 +50,7 @@ export class Document<
     } else if (isObject(rawData)) {
       this.buildFromObject(rawData as object); // eslint-disable-line @typescript-eslint/ban-types
     } else {
-      throw new TypeError("rawData not an acceptable type.");
+      throw new TypeError('rawData not an acceptable type.');
     }
   }
 
@@ -109,7 +109,7 @@ export class Document<
       }
     } else {
       throw new TypeError(
-        "entityName references an unknown " + "entity (" + entityName + ")."
+        'entityName references an unknown ' + 'entity (' + entityName + ').'
       );
     }
   }
@@ -121,8 +121,8 @@ export class Document<
   public async validate(): Promise<boolean> {
     if (this.validating) {
       throw new Error(
-        "A call to validate was made while validation is " +
-          "already running for this document."
+        'A call to validate was made while validation is ' +
+          'already running for this document.'
       );
     }
     // Unlike our Property objects, there are multiple paths to change

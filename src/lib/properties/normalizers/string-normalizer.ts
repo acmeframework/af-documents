@@ -1,12 +1,12 @@
-import { isUsable } from "af-conditionals";
+import { isUsable } from 'af-conditionals';
 
 import {
   DEFAULT_STRING_NORMALIZE_TO_LOWER,
   DEFAULT_STRING_NORMALIZE_TO_UPPER,
   DEFAULT_STRING_TRIM_LEFT,
   DEFAULT_STRING_TRIM_RIGHT,
-} from "../string-property-defs";
-import { Normalizer, NormalizerOptions } from "./normalizer";
+} from '../string-property-defs';
+import { Normalizer, NormalizerOptions } from './normalizer';
 
 export interface StringNormalizerOptions extends NormalizerOptions {
   normalizeToLower?: boolean;
@@ -30,10 +30,10 @@ export class StringNormalizer<
       newValue = newValue.toUpperCase();
     }
     if (this.options.trimLeft) {
-      newValue = newValue.replace(DEFAULT_TRIM_LEFT_MASK, "");
+      newValue = newValue.replace(DEFAULT_TRIM_LEFT_MASK, '');
     }
     if (this.options.trimRight) {
-      newValue = newValue.replace(DEFAULT_TRIM_RIGHT_MASK, "");
+      newValue = newValue.replace(DEFAULT_TRIM_RIGHT_MASK, '');
     }
     return newValue;
   }
@@ -71,7 +71,7 @@ export class StringNormalizer<
       this.options.trimRight = defaultTrimRight;
     }
     if (this.options.normalizeToLower && this.options.normalizeToUpper) {
-      throw new TypeError("You must provide a valid options object.");
+      throw new TypeError('You must provide a valid options object.');
     }
   }
 }

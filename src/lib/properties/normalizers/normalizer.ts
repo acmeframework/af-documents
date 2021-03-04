@@ -1,13 +1,13 @@
-import { isUsable } from "af-conditionals";
-import { EventEmitter } from "eventemitter3";
+import { isUsable } from 'af-conditionals';
+import { EventEmitter } from 'eventemitter3';
 
-import { Property } from "../property";
+import { Property } from '../property';
 import {
   PROPERTY_NORMALIZE_EVENT,
   PropertyValueChangeEvent,
-} from "../property-defs";
+} from '../property-defs';
 
-export const DEFAULT_NORMALIZER_NAME = "generic_normalizer";
+export const DEFAULT_NORMALIZER_NAME = 'generic_normalizer';
 
 export interface NormalizerOptions {
   displayName?: string;
@@ -69,8 +69,8 @@ export abstract class Normalizer<
   protected _validateOptions(newOptions: O | undefined): void {
     const gc = Normalizer.getNextNormalizerCount();
     const defaultOptions: O = {
-      displayName: DEFAULT_NORMALIZER_NAME + "_" + gc,
-      name: DEFAULT_NORMALIZER_NAME + "_" + gc,
+      displayName: DEFAULT_NORMALIZER_NAME + '_' + gc,
+      name: DEFAULT_NORMALIZER_NAME + '_' + gc,
       parent: undefined,
     } as O;
 

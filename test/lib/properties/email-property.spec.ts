@@ -1,6 +1,6 @@
-import "mocha";
+import 'mocha';
 
-import { expect } from "chai";
+import { expect } from 'chai';
 
 import {
   DEFAULT_EMAIL_PROPERTY_NAME,
@@ -12,13 +12,13 @@ import {
   EmailProperty,
   emailPropertyFactory,
   EmailPropertyOptions,
-} from "../../../src/lib";
+} from '../../../src/lib';
 
-describe("EmailProperty class", function () {
-  const PROPERTY_NAME = "Email Property";
-  const EMAIL_DATA = "test@example.com";
+describe('EmailProperty class', function () {
+  const PROPERTY_NAME = 'Email Property';
+  const EMAIL_DATA = 'test@example.com';
 
-  describe("Test the factory method", function () {
+  describe('Test the factory method', function () {
     const depo = {
       ...DEFAULT_ENTITY_OPTIONS,
       ...DEFAULT_PROPERTY_OPTIONS,
@@ -33,18 +33,18 @@ describe("EmailProperty class", function () {
       expect(epo).to.deep.equal(depo);
     }
 
-    it("creates a EmailProperty with defaults for an email address", function () {
+    it('creates a EmailProperty with defaults for an email address', function () {
       ep = emailPropertyFactory(EMAIL_DATA);
       expect(ep).to.be.an.instanceof(EmailProperty);
 
       const rec = EmailProperty.getPropertyCount();
-      const dn = DEFAULT_EMAIL_PROPERTY_NAME + "_" + rec;
+      const dn = DEFAULT_EMAIL_PROPERTY_NAME + '_' + rec;
       depo.name = dn;
       depo.displayName = dn;
       testOptions();
     });
 
-    it("creates a EmailProperty with a supplied name", function () {
+    it('creates a EmailProperty with a supplied name', function () {
       ep = emailPropertyFactory(EMAIL_DATA, PROPERTY_NAME);
       expect(ep).to.be.an.instanceof(EmailProperty);
 
@@ -53,7 +53,7 @@ describe("EmailProperty class", function () {
       testOptions();
     });
 
-    it("creates a EmailProperty with various options", function () {
+    it('creates a EmailProperty with various options', function () {
       // No options
       ep = new EmailProperty(EMAIL_DATA, {
         name: PROPERTY_NAME,
@@ -108,43 +108,43 @@ describe("EmailProperty class", function () {
    */
   // TODO: Build test cases and code to cover all possible email address
   // TODO: formats allowed by the RFC's.
-  describe("Tests various email formats for validation", function () {
+  describe('Tests various email formats for validation', function () {
     const goodTestEmails = [
-      "test@example.com",
-      "test+me@example.com",
-      "test_me+you@example.com",
+      'test@example.com',
+      'test+me@example.com',
+      'test_me+you@example.com',
       '"test..me"@example.com',
       "!#$%&'*+-/=?^_`{|}~@example.com",
       '".test.me"@example.com',
       '"test.me."@example.com',
       '"(comment)test.me"@example.com',
       '"test.me(comment)"@example.com',
-      "x@example.com",
+      'x@example.com',
       // ! "\"very.(),:;<>[]\".VERY.\"very@\\ \"very\".unusual\"@strange.example.com",
-      "test-me+you@example.com",
+      'test-me+you@example.com',
       // !"test@example",
       // ! "\"()<>[]:,;@\\\"!#$%&'-/=?^_`{}| ~.a\"@example.org",
-      "example@s.example",
-      "test@[192.168.1.1]",
+      'example@s.example',
+      'test@[192.168.1.1]',
       // ! "test@[2001:DB8::1]",
       // ! "\" \"@example.com"
     ];
 
     const badTestEmails = [
-      "test..me@example.com",
-      ".test.me@example.com",
-      "test.me.@example.com",
-      "test(comment).me@example.com",
-      "(comment)test.me@example.com",
-      "test.me(comment)@example.com",
-      "test.example.com",
-      "test@me@example.com",
+      'test..me@example.com',
+      '.test.me@example.com',
+      'test.me.@example.com',
+      'test(comment).me@example.com',
+      '(comment)test.me@example.com',
+      'test.me(comment)@example.com',
+      'test.example.com',
+      'test@me@example.com',
       'a"b(c)d,e:f;g<h>i[jk]l@example.com',
       'just"not"right@example.com',
       'this is"notallowed@example.com',
       'this still"not\\allowed@example.com',
       // ! "1234567890123456789012345678901234567890123456789012345678901234+x@example.com",
-      "test.me@example..com",
+      'test.me@example..com',
     ];
 
     goodTestEmails.forEach(

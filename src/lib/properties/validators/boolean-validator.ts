@@ -1,6 +1,6 @@
-import { isEmpty } from "af-conditionals";
+import { isEmpty } from 'af-conditionals';
 
-import { Validator, ValidatorOptions } from "./validator";
+import { Validator, ValidatorOptions } from './validator';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface BooleanValidatorOptions extends ValidatorOptions {}

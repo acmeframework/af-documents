@@ -27,7 +27,7 @@ export class ImmutableProperty<
   constructor(newValue: T, newName: string, newDisplayName?: string) {
     super({
       displayName: newDisplayName,
-      name: newName
+      name: newName,
     } as O);
 
     if (!this.isValueAllowed(newValue)) {

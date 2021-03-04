@@ -1,6 +1,6 @@
-import "mocha";
+import 'mocha';
 
-import { expect } from "chai";
+import { expect } from 'chai';
 
 import {
   DEFAULT_REGEXP_MASK,
@@ -11,14 +11,14 @@ import {
   RegExpValidator,
   RegExpValidatorOptions,
   ValidatorErrorCodes,
-} from "../../../../src/lib";
+} from '../../../../src/lib';
 
-describe("RegExpValidator class", function () {
-  const VALIDATOR_NAME = "Test String";
-  const STRING_DATA = "Hello World";
+describe('RegExpValidator class', function () {
+  const VALIDATOR_NAME = 'Test String';
+  const STRING_DATA = 'Hello World';
 
-  describe("Test the construction and options", function () {
-    it("tests construction of the object with options to test all paths", function () {
+  describe('Test the construction and options', function () {
+    it('tests construction of the object with options to test all paths', function () {
       expect(function () {
         new RegExpValidator({ name: VALIDATOR_NAME });
       }).to.throw(TypeError);
@@ -49,7 +49,7 @@ describe("RegExpValidator class", function () {
       expect(spo).to.deep.equal(tpo);
     }
 
-    it("ensures all options have valid values", function () {
+    it('ensures all options have valid values', function () {
       const loadOptions: RegExpValidatorOptions = {
         mask: DEFAULT_REGEXP_MASK,
         name: VALIDATOR_NAME,
@@ -70,10 +70,10 @@ describe("RegExpValidator class", function () {
     });
   });
 
-  describe("Testing functionality of the class", function () {
-    const EMPTY_STRING_DATA = "";
+  describe('Testing functionality of the class', function () {
+    const EMPTY_STRING_DATA = '';
     const SPECIFIC_REGEXP = /[0-9]{3}-[0-9]{2}-[0-9]{4}/;
-    const MATCH_SPECIFIC_REGEXP_STRING = "123-45-6789";
+    const MATCH_SPECIFIC_REGEXP_STRING = '123-45-6789';
 
     const TEST_OPTIONS = [
       { mask: DEFAULT_REGEXP_MASK, name: VALIDATOR_NAME },
@@ -88,12 +88,12 @@ describe("RegExpValidator class", function () {
       rv = new RegExpValidator(options);
     });
 
-    it("validates a default RegExpValidator", async function () {
+    it('validates a default RegExpValidator', async function () {
       expect(await rv.validate(STRING_DATA)).to.be.true;
       expect(await rv.validate(EMPTY_STRING_DATA)).to.be.true;
     });
 
-    it("tests if the string matches a specific RegExp", async function () {
+    it('tests if the string matches a specific RegExp', async function () {
       expect(await rv.validate(STRING_DATA)).to.be.false;
       expect(rv.getErrors()[0].code).to.equal(ValidatorErrorCodes.Invalid);
       expect(await rv.validate(MATCH_SPECIFIC_REGEXP_STRING)).to.be.true;

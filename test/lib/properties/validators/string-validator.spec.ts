@@ -1,7 +1,7 @@
-import "mocha";
+import 'mocha';
 
-import chai = require("chai");
-import chaiAsPromised = require("chai-as-promised");
+import chai = require('chai');
+import chaiAsPromised = require('chai-as-promised');
 
 import {
   DEFAULT_REQUIRED,
@@ -11,17 +11,17 @@ import {
   StringValidator,
   StringValidatorOptions,
   ValidatorErrorCodes,
-} from "../../../../src/lib";
+} from '../../../../src/lib';
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
-describe("StringValidator class", function () {
-  const VALIDATOR_NAME = "Test Validator";
-  const STRING_DATA = "Hello World";
+describe('StringValidator class', function () {
+  const VALIDATOR_NAME = 'Test Validator';
+  const STRING_DATA = 'Hello World';
 
-  describe("Test the construction and options", function () {
-    it("tests construction of the object with options to test all paths", function () {
+  describe('Test the construction and options', function () {
+    it('tests construction of the object with options to test all paths', function () {
       expect(new StringValidator({ name: VALIDATOR_NAME })).to.be.an.instanceof(
         StringValidator
       );
@@ -34,7 +34,7 @@ describe("StringValidator class", function () {
       // @ts-ignore
       expect(new StringValidator(null)).to.be.an.instanceof(StringValidator);
 
-      expect(new StringValidator({ name: "" })).to.be.an.instanceof(
+      expect(new StringValidator({ name: '' })).to.be.an.instanceof(
         StringValidator
       );
 
@@ -61,7 +61,7 @@ describe("StringValidator class", function () {
       expect(svo).to.deep.equal(testOptions);
     }
 
-    it("ensures all options have valid values", function () {
+    it('ensures all options have valid values', function () {
       const loadOptions: StringValidatorOptions = {
         name: VALIDATOR_NAME,
       };
@@ -78,8 +78,8 @@ describe("StringValidator class", function () {
       // Test all defaults
       testPropertyOption(loadOptions, testOptions);
 
-      loadOptions.displayName = "My Test Property";
-      testOptions.displayName = "My Test Property";
+      loadOptions.displayName = 'My Test Property';
+      testOptions.displayName = 'My Test Property';
       testPropertyOption(loadOptions, testOptions);
 
       loadOptions.maxLength = 80;
@@ -92,8 +92,8 @@ describe("StringValidator class", function () {
     });
   });
 
-  describe("Testing functionality of the class", function () {
-    const EMPTY_STRING_DATA = "";
+  describe('Testing functionality of the class', function () {
+    const EMPTY_STRING_DATA = '';
 
     const TEST_OPTIONS = [
       { name: VALIDATOR_NAME },
@@ -112,21 +112,21 @@ describe("StringValidator class", function () {
       sv = new StringValidator(options);
     });
 
-    it("validates a default StringValidator", async function () {
+    it('validates a default StringValidator', async function () {
       expect(await sv.validate(STRING_DATA)).to.be.true;
     });
 
     it(
-      "tests if the data is greater than the minLength when " +
-        "minLength = 5 (true)",
+      'tests if the data is greater than the minLength when ' +
+        'minLength = 5 (true)',
       async function () {
         expect(await sv.validate(STRING_DATA)).to.be.true;
       }
     );
 
     it(
-      "tests if the data is greater than the minLength when " +
-        "minLength = 15 (false)",
+      'tests if the data is greater than the minLength when ' +
+        'minLength = 15 (false)',
       async function () {
         expect(await sv.validate(STRING_DATA)).to.be.false;
         expect(sv.getErrors()[0].code).to.be.equal(ValidatorErrorCodes.Invalid);
@@ -136,8 +136,8 @@ describe("StringValidator class", function () {
     );
 
     it(
-      "tests if the data is greater than the minLength when minLength" +
-        " = 15 (false), and required",
+      'tests if the data is greater than the minLength when minLength' +
+        ' = 15 (false), and required',
       async function () {
         expect(await sv.validate(STRING_DATA)).to.be.false;
         expect(sv.getErrors()[0].code).to.be.equal(
@@ -147,16 +147,16 @@ describe("StringValidator class", function () {
     );
 
     it(
-      "tests if the data is greater than the maxLength when " +
-        "maxLength = 20 (true)",
+      'tests if the data is greater than the maxLength when ' +
+        'maxLength = 20 (true)',
       async function () {
         expect(await sv.validate(STRING_DATA)).to.be.true;
       }
     );
 
     it(
-      "tests if the data is greater than the maxLength when " +
-        "maxLength = 10 (false)",
+      'tests if the data is greater than the maxLength when ' +
+        'maxLength = 10 (false)',
       async function () {
         expect(await sv.validate(STRING_DATA)).to.be.false;
         expect(sv.getErrors()[0].code).to.be.equal(ValidatorErrorCodes.Invalid);

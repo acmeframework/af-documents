@@ -1,4 +1,4 @@
-import { Validator, ValidatorOptions } from "./validator";
+import { Validator, ValidatorOptions } from './validator';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AlwaysValidValidatorOptions extends ValidatorOptions {}

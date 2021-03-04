@@ -1,6 +1,6 @@
-import { isUsable } from "af-conditionals";
-import { EventEmitter } from "eventemitter3";
-import cloneDeep from "lodash/cloneDeep";
+import { isUsable } from 'af-conditionals';
+import { EventEmitter } from 'eventemitter3';
+import cloneDeep from 'lodash/cloneDeep';
 
 export interface EntityOptions {
   /**

@@ -1,13 +1,13 @@
-import { isUsable } from "af-conditionals";
-import cloneDeep from "lodash/cloneDeep";
+import { isUsable } from 'af-conditionals';
+import cloneDeep from 'lodash/cloneDeep';
 
 import {
   DEFAULT_EMAIL_MASK,
   DEFAULT_EMAIL_PROPERTY_NAME,
   MAXIMUM_EMAIL_ADDRESS_LEN,
   MINIMUM_EMAIL_ADDRESS_LEN,
-} from "./email-property-defs";
-import { RegExpProperty, RegExpPropertyOptions } from "./regexp-property";
+} from './email-property-defs';
+import { RegExpProperty, RegExpPropertyOptions } from './regexp-property';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface EmailPropertyOptions extends RegExpPropertyOptions {}
@@ -65,9 +65,9 @@ export function emailPropertyFactory(
     options = cloneDeep(DEFAULT_EMAIL_PROPERTY_OPTIONS);
     // For consistent creation of default property names we make options.name
     // an empty string here.
-    options.name = "";
+    options.name = '';
   }
-  options!.name = name || options!.name || defaultName + "_" + pc;
+  options!.name = name || options!.name || defaultName + '_' + pc;
   options!.displayName = displayName || options!.displayName || options!.name;
 
   return new EmailProperty(value, options!);

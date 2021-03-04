@@ -1,9 +1,9 @@
-import "mocha";
+import 'mocha';
 
-import { isUsable } from "af-conditionals";
-import chai = require("chai");
-import chaiAsPromised = require("chai-as-promised");
-import util = require("util");
+import { isUsable } from 'af-conditionals';
+import chai = require('chai');
+import chaiAsPromised = require('chai-as-promised');
+import util = require('util');
 
 import {
   DEFAULT_VALIDATION_STOP_ON_INVALID,
@@ -12,8 +12,8 @@ import {
   Document,
   ValidationStrategy,
   ValidationStrategyOptions,
-} from "../../../../src/lib";
-import { TEST_OBJECT1 } from "../document-test-data";
+} from '../../../../src/lib';
+import { TEST_OBJECT1 } from '../document-test-data';
 
 const setTimeoutPromise = util.promisify(setTimeout);
 
@@ -46,8 +46,8 @@ class ValidationStrategyTester extends ValidationStrategy<
   }
 }
 
-describe("ValidationStrategy class", function () {
-  describe("Test the construction and options", function () {
+describe('ValidationStrategy class', function () {
+  describe('Test the construction and options', function () {
     function testValidationStrategyOption(
       loadOptions: ValidationStrategyTesterOptions,
       testOptions: ValidationStrategyTesterOptions
@@ -57,7 +57,7 @@ describe("ValidationStrategy class", function () {
       expect(vsto).to.deep.equal(testOptions);
     }
 
-    it("ensures all options have valid values", function () {
+    it('ensures all options have valid values', function () {
       const loadOptions: ValidationStrategyTesterOptions = {};
 
       // All defaults (displayName = name by default)
@@ -85,7 +85,7 @@ describe("ValidationStrategy class", function () {
     });
   });
 
-  describe("Testing functionality of the class", function () {
+  describe('Testing functionality of the class', function () {
     let document: Document | undefined;
     let vst: ValidationStrategyTester;
 
@@ -98,22 +98,22 @@ describe("ValidationStrategy class", function () {
       vst = new ValidationStrategyTester(undefined, options);
     }
 
-    it(" 1. tests setting our defaults based upon our parent", function () {
+    it(' 1. tests setting our defaults based upon our parent', function () {
       document = new Document(TEST_OBJECT1);
       vst = new ValidationStrategyTester(document);
       expect(vst).to.not.be.undefined;
       document = undefined;
     });
 
-    it(" 2. validates a default ValidationStrategy", async function () {
+    it(' 2. validates a default ValidationStrategy', async function () {
       setupTestObjects(undefined);
       expect(await vst.validate(document!.getEntities())).to.be.true;
       document = undefined;
     });
 
     it(
-      " 3. tests calling validation twice, first validation " +
-        "is delayed 200ms",
+      ' 3. tests calling validation twice, first validation ' +
+        'is delayed 200ms',
       async function () {
         async function firstTest() {
           expect(await vst.validate(document!.getEntities())).to.be.true;
@@ -136,8 +136,8 @@ describe("ValidationStrategy class", function () {
             // This is an error indicating that validate was already
             // running.
             expect(err.message).to.equal(
-              "A call to validate was made while validation is " +
-                "already running for this validation strategy."
+              'A call to validate was made while validation is ' +
+                'already running for this validation strategy.'
             );
           }
         }

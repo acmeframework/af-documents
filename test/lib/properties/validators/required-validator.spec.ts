@@ -1,6 +1,6 @@
-import "mocha";
+import 'mocha';
 
-import { expect } from "chai";
+import { expect } from 'chai';
 
 import {
   DEFAULT_INVALID_IF_NOT_REQUIRED_AND_EMPTY,
@@ -9,14 +9,14 @@ import {
   RequiredValidatorOptions,
   StringProperty,
   ValidatorErrorCodes,
-} from "../../../../src/lib";
+} from '../../../../src/lib';
 
-describe("RequiredValidator class", function () {
-  const VALIDATOR_NAME = "Test Validator";
-  const STRING_DATA = "Hello World";
+describe('RequiredValidator class', function () {
+  const VALIDATOR_NAME = 'Test Validator';
+  const STRING_DATA = 'Hello World';
 
-  describe("Test the construction and options", function () {
-    it("tests construction of the object with options to test all paths", function () {
+  describe('Test the construction and options', function () {
+    it('tests construction of the object with options to test all paths', function () {
       expect(
         new RequiredValidator<string>({ name: VALIDATOR_NAME })
       ).to.be.an.instanceof(RequiredValidator);
@@ -39,7 +39,7 @@ describe("RequiredValidator class", function () {
       expect(rvo).to.deep.equal(testOptions);
     }
 
-    it("ensures all options have valid values", function () {
+    it('ensures all options have valid values', function () {
       const loadOptions: RequiredValidatorOptions = {
         name: VALIDATOR_NAME,
       };
@@ -57,8 +57,8 @@ describe("RequiredValidator class", function () {
     });
   });
 
-  describe("Testing functionality of the class", function () {
-    const EMPTY_STRING_DATA = "";
+  describe('Testing functionality of the class', function () {
+    const EMPTY_STRING_DATA = '';
 
     const TEST_OPTIONS = [
       { name: VALIDATOR_NAME },
@@ -74,12 +74,12 @@ describe("RequiredValidator class", function () {
       rv = new RequiredValidator<string>(options);
     });
 
-    it("validates a default RequiredValidator", async function () {
+    it('validates a default RequiredValidator', async function () {
       expect(await rv.validate(STRING_DATA)).to.be.true;
       expect(await rv.validate(EMPTY_STRING_DATA)).to.be.true;
     });
 
-    it("tests if an empty string throws an error when required", async function () {
+    it('tests if an empty string throws an error when required', async function () {
       expect(await rv.validate(STRING_DATA)).to.be.true;
       expect(await rv.validate(EMPTY_STRING_DATA)).to.be.false;
       expect(rv.getErrors()[0].code).to.equal(
@@ -88,8 +88,8 @@ describe("RequiredValidator class", function () {
     });
 
     it(
-      "tests if an empty string throws an error when " +
-        "invalidIfNotRequiredAndEmpty is true",
+      'tests if an empty string throws an error when ' +
+        'invalidIfNotRequiredAndEmpty is true',
       async function () {
         expect(await rv.validate(STRING_DATA)).to.be.true;
         expect(await rv.validate(EMPTY_STRING_DATA)).to.be.false;

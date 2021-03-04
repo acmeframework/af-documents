@@ -1,10 +1,10 @@
-import { isUsable } from "af-conditionals";
-import { EventEmitter } from "eventemitter3";
+import { isUsable } from 'af-conditionals';
+import { EventEmitter } from 'eventemitter3';
 
-import { Property } from "../property";
-import { DEFAULT_REQUIRED } from "../property-defs";
+import { Property } from '../property';
+import { DEFAULT_REQUIRED } from '../property-defs';
 
-export const VALIDATOR_ENRICHED_DATA_EVENT = "propertyEnrichedData";
+export const VALIDATOR_ENRICHED_DATA_EVENT = 'propertyEnrichedData';
 
 export interface ValidatorEnrichedDataEvent<T> {
   context: any;
@@ -30,7 +30,7 @@ export interface ValidatorError {
   name: string;
 }
 
-export const DEFAULT_VALIDATOR_NAME = "generic_validator";
+export const DEFAULT_VALIDATOR_NAME = 'generic_validator';
 
 export interface ValidatorOptions {
   displayName?: string;
@@ -130,8 +130,8 @@ export abstract class Validator<
   public async validate(value: T): Promise<boolean> {
     if (this.validating) {
       throw new Error(
-        "You have called validate() while another" +
-          " validate() call is running."
+        'You have called validate() while another' +
+          ' validate() call is running.'
       );
     }
     if (value === this.lastValue) {
@@ -194,8 +194,8 @@ export abstract class Validator<
   protected _validateOptions(newOptions: O | undefined): void {
     const gc = Validator.getNextValidatorCount();
     const defaultOptions: O = {
-      displayName: DEFAULT_VALIDATOR_NAME + "_" + gc,
-      name: DEFAULT_VALIDATOR_NAME + "_" + gc,
+      displayName: DEFAULT_VALIDATOR_NAME + '_' + gc,
+      name: DEFAULT_VALIDATOR_NAME + '_' + gc,
       parent: undefined,
       required: DEFAULT_REQUIRED,
     } as O;

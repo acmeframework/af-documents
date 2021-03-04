@@ -21,7 +21,7 @@ export const DEFAULT_NUMBER_PROPERTY_OPTION: Readonly<NumberPropertyOptions> = {
   maxValue: DEFAULT_NUMBER_MAX_VALUE,
   minValue: DEFAULT_NUMBER_MIN_VALUE,
   name: DEFAULT_NUMBER_PROPERTY_NAME,
-  numberBounds: DEFAULT_NUMBER_BOUNDS
+  numberBounds: DEFAULT_NUMBER_BOUNDS,
 };
 
 export class NumberProperty<

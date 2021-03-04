@@ -1,6 +1,6 @@
-import "mocha";
+import 'mocha';
 
-import { expect } from "chai";
+import { expect } from 'chai';
 
 import {
   DEFAULT_NUMBER_BOUNDS,
@@ -12,10 +12,10 @@ import {
   NumberValidator,
   NumberValidatorOptions,
   ValidatorErrorCodes,
-} from "../../../../src/lib";
+} from '../../../../src/lib';
 
-describe("NumberValidator class", function () {
-  const VALIDATOR_NAME = "Test Validator";
+describe('NumberValidator class', function () {
+  const VALIDATOR_NAME = 'Test Validator';
   const NUMBER_DATA = 102696;
   const SMALL_NUMBER_DATA = 5;
   const LARGE_NUMBER_DATA = Infinity;
@@ -24,8 +24,8 @@ describe("NumberValidator class", function () {
   const MINVALUE_TEST = 10000;
   const MAXMINVALUE_OFF = 0;
 
-  describe("Test the construction and options", function () {
-    it("throws an Error or a TypeError during construction", function () {
+  describe('Test the construction and options', function () {
+    it('throws an Error or a TypeError during construction', function () {
       // maxValue cannot be a lesser value than minValue
       expect(function () {
         new NumberValidator({
@@ -38,8 +38,8 @@ describe("NumberValidator class", function () {
 
     // Regression
     it(
-      "ensure minValue set with maxValue 0 does not throw an error" +
-        "(regression)",
+      'ensure minValue set with maxValue 0 does not throw an error' +
+        '(regression)',
       function () {
         expect(function () {
           new NumberValidator({
@@ -51,7 +51,7 @@ describe("NumberValidator class", function () {
       }
     );
 
-    it("ensure minValue === maxValue does not throw an error (regression)", function () {
+    it('ensure minValue === maxValue does not throw an error (regression)', function () {
       expect(function () {
         new NumberValidator({
           maxValue: NUMBER_DATA,
@@ -61,7 +61,7 @@ describe("NumberValidator class", function () {
       }).to.not.throw();
     });
 
-    it("ensure minValue < Number.MIN_SAFE_INTEGER throws an error", function () {
+    it('ensure minValue < Number.MIN_SAFE_INTEGER throws an error', function () {
       expect(function () {
         new NumberValidator({
           maxValue: DEFAULT_NUMBER_MAX_VALUE,
@@ -72,7 +72,7 @@ describe("NumberValidator class", function () {
       }).to.throw(RangeError);
     });
 
-    it("ensure maxValue > Number.MAX_SAFE_INTEGER throws an error", function () {
+    it('ensure maxValue > Number.MAX_SAFE_INTEGER throws an error', function () {
       expect(function () {
         new NumberValidator({
           maxValue: LARGE_NUMBER_DATA,
@@ -83,7 +83,7 @@ describe("NumberValidator class", function () {
       }).to.throw(RangeError);
     });
 
-    it("pulls options from the parent", function () {
+    it('pulls options from the parent', function () {
       const np = new NumberProperty(NUMBER_DATA, { name: VALIDATOR_NAME });
       expect(function () {
         new NumberValidator({ parent: np });
@@ -104,7 +104,7 @@ describe("NumberValidator class", function () {
       expect(nvo).to.deep.equal(tpo);
     }
 
-    it("ensures all options have valid values", function () {
+    it('ensures all options have valid values', function () {
       const loadOptions: NumberValidatorOptions = {
         name: VALIDATOR_NAME,
       };
@@ -163,7 +163,7 @@ describe("NumberValidator class", function () {
     });
   });
 
-  describe("Testing functionality of the class", function () {
+  describe('Testing functionality of the class', function () {
     const TEST_OPTIONS = [
       { name: VALIDATOR_NAME },
       { name: VALIDATOR_NAME, minValue: 10 },
@@ -186,40 +186,40 @@ describe("NumberValidator class", function () {
       nv = new NumberValidator(options);
     });
 
-    it("validates a default NumberValidator", async function () {
+    it('validates a default NumberValidator', async function () {
       expect(await nv.validate(NUMBER_DATA)).to.be.true;
     });
 
-    it("validates the minValue validation", async function () {
+    it('validates the minValue validation', async function () {
       expect(await nv.validate(NUMBER_DATA)).to.be.true;
       expect(await nv.validate(SMALL_NUMBER_DATA)).to.be.false;
       expect(nv.getErrors()[0].code).to.equal(ValidatorErrorCodes.Invalid);
     });
 
-    it("validates the minValue validation when required", async function () {
+    it('validates the minValue validation when required', async function () {
       expect(await nv.validate(SMALL_NUMBER_DATA)).to.be.false;
       expect(nv.getErrors()[0].code).to.equal(
         ValidatorErrorCodes.RequiredAndInvalid
       );
     });
 
-    it("validates the minValue validation when minValue is negative", async function () {
+    it('validates the minValue validation when minValue is negative', async function () {
       expect(await nv.validate(-NUMBER_DATA)).to.be.false;
       expect(nv.getErrors()[0].code).to.equal(ValidatorErrorCodes.Invalid);
     });
 
-    it("validates the maxValue validation", async function () {
+    it('validates the maxValue validation', async function () {
       expect(await nv.validate(LARGE_NUMBER_DATA)).to.be.false;
       expect(nv.getErrors()[0].code).to.equal(ValidatorErrorCodes.Invalid);
     });
 
-    it("validates the maxValue validation when required", async function () {
+    it('validates the maxValue validation when required', async function () {
       expect(await nv.validate(LARGE_NUMBER_DATA)).to.be.false;
       expect(nv.getErrors()[0].code).to.equal(
         ValidatorErrorCodes.RequiredAndInvalid
       );
     });
-    it("validates the maxValue validation when maxValue is negative", async function () {
+    it('validates the maxValue validation when maxValue is negative', async function () {
       expect(await nv.validate(NUMBER_DATA)).to.be.false;
       expect(nv.getErrors()[0].code).to.equal(ValidatorErrorCodes.Invalid);
 

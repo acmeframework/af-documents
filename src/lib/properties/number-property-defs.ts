@@ -11,4 +11,4 @@ export const DEFAULT_NUMBER_MAX_VALUE = 0;
 export const DEFAULT_NUMBER_MIN_VALUE = 0;
 export const DEFAULT_NUMBER_BOUNDS = NumberBoundTypes.unbounded;
 
-export const DEFAULT_NUMBER_PROPERTY_NAME = "number_property";
+export const DEFAULT_NUMBER_PROPERTY_NAME = 'number_property';

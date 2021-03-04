@@ -1,8 +1,8 @@
-import { isEmpty, isUsable } from "af-conditionals";
+import { isEmpty, isUsable } from 'af-conditionals';
 
-import { PropertyOptions } from "../property";
-import { DEFAULT_INVALID_IF_NOT_REQUIRED_AND_EMPTY } from "../property-defs";
-import { Validator, ValidatorOptions } from "./validator";
+import { PropertyOptions } from '../property';
+import { DEFAULT_INVALID_IF_NOT_REQUIRED_AND_EMPTY } from '../property-defs';
+import { Validator, ValidatorOptions } from './validator';
 
 export interface RequiredValidatorOptions extends ValidatorOptions {
   invalidIfNotRequiredAndEmpty?: boolean;
@@ -32,7 +32,7 @@ export class RequiredValidator<
       (this.options.required || this.options.invalidIfNotRequiredAndEmpty)
     ) {
       this.addEmptyError([
-        this.options.displayName + " is empty and is required.",
+        this.options.displayName + ' is empty and is required.',
       ]);
       return Promise.resolve(false);
     }

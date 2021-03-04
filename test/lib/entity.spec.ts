@@ -1,6 +1,6 @@
-import "mocha";
+import 'mocha';
 
-import { expect } from "chai";
+import { expect } from 'chai';
 
 import {
   DEFAULT_VALIDATION_STOP_ON_INVALID,
@@ -8,7 +8,7 @@ import {
   DEFAULT_VALIDATION_WAIT_TIMEOUT,
   Entity,
   EntityOptions,
-} from "../../src/lib";
+} from '../../src/lib';
 
 class EntityTester<T = any> extends Entity<T, EntityOptions> {
   public normalize(): void {
@@ -20,9 +20,9 @@ class EntityTester<T = any> extends Entity<T, EntityOptions> {
   }
 }
 
-describe("Entity class", function () {
-  describe("Test the construction and options", function () {
-    it("instantiates a valid Entity object", function () {
+describe('Entity class', function () {
+  describe('Test the construction and options', function () {
+    it('instantiates a valid Entity object', function () {
       expect(new EntityTester()).to.be.an.instanceof(EntityTester);
     });
 
@@ -35,7 +35,7 @@ describe("Entity class", function () {
       expect(spto).to.deep.equal(testOptions);
     }
 
-    it("ensures all options have valid values", function () {
+    it('ensures all options have valid values', function () {
       const loadOptions: EntityOptions = {};
 
       // All defaults (displayName = name by default)

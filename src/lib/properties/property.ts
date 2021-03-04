@@ -1,8 +1,8 @@
-import { isArray, isEmpty, isUsable } from "af-conditionals";
-import waitUntil from "async-wait-until";
+import { isArray, isEmpty, isUsable } from 'af-conditionals';
+import waitUntil from 'async-wait-until';
 
-import { Entity, EntityOptions } from "..";
-import { Normalizer } from "./normalizers";
+import { Entity, EntityOptions } from '..';
+import { Normalizer } from './normalizers';
 import {
   DEFAULT_INVALID_IF_NOT_REQUIRED_AND_EMPTY,
   DEFAULT_NORMALIZE_AFTER_SET,
@@ -17,8 +17,8 @@ import {
   PROPERTY_VALUE_SET_EVENT,
   PropertyValidationEvent,
   PropertyValueChangeEvent,
-} from "./property-defs";
-import { RequiredValidator, Validator, ValidatorError } from "./validators";
+} from './property-defs';
+import { RequiredValidator, Validator, ValidatorError } from './validators';
 
 /**
  * PropertyOptions provides options for the Property base class.
@@ -97,9 +97,9 @@ export interface PropertyOptions extends EntityOptions {
 }
 
 export const DEFAULT_PROPERTY_OPTIONS: Readonly<PropertyOptions> = {
-  displayName: "",
+  displayName: '',
   invalidIfNotRequiredAndEmpty: DEFAULT_INVALID_IF_NOT_REQUIRED_AND_EMPTY,
-  name: "",
+  name: '',
   normalizeAfterSet: DEFAULT_NORMALIZE_AFTER_SET,
   normalizeBeforeValidate: DEFAULT_NORMALIZE_BEFORE_VALIDATE,
   normalizeIfValid: DEFAULT_NORMALIZE_IF_VALID,
@@ -247,7 +247,7 @@ export class Property<
    */
   public set value(newValue: T | undefined) {
     if (!this.isValueAllowed(newValue)) {
-      throw new Error(this.options.displayName + " is not an allowed value.");
+      throw new Error(this.options.displayName + ' is not an allowed value.');
     }
     if (this.isEqual(newValue!)) return;
 
@@ -407,8 +407,8 @@ export class Property<
   public async validate(): Promise<boolean> {
     if (this.validating) {
       throw new Error(
-        "You have called validate() while another" +
-          " validate() call is running."
+        'You have called validate() while another' +
+          ' validate() call is running.'
       );
     }
     if (this.validated) {
@@ -593,7 +593,7 @@ export class Property<
    */
   protected _validateOptions(newOptions: O): void {
     if (!isUsable(newOptions.name) || isEmpty(newOptions.name)) {
-      throw new TypeError("Must supply a valid options object.");
+      throw new TypeError('Must supply a valid options object.');
     }
     // We override values that Entity is responsible for,
     // validationWaitInterval and validationWaitTimeout. Therefore, we must

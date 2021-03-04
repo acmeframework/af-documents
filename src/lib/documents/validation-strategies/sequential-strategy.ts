@@ -1,9 +1,9 @@
-import { Entity } from "../../entity";
-import { DocumentEntity } from "../document";
+import { Entity } from '../../entity';
+import { DocumentEntity } from '../document';
 import {
   ValidationStrategy,
   ValidationStrategyOptions,
-} from "./validation-strategy";
+} from './validation-strategy';
 
 export class SequentialValidationStrategy<
   T extends Record<string, any> = Record<string, any>,

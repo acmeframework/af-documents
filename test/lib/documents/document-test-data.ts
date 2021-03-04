@@ -1,13 +1,13 @@
 export const BAD_JSON_OBJECT = '{ name: }';
 
 export const SIMPLE_OBJECT = {
-  firstName: 'Michael'
+  firstName: 'Michael',
 };
 
 export const SIMPLE_JSON_OBJECT = '{ "firstName": "Michael" }';
 
 export const SIMPLE_OBJECT_UNKNOWNFIELD = {
-  me: 'Michael Coakley'
+  me: 'Michael Coakley',
 };
 
 // const EMPTY_OBJECT = {};
@@ -38,38 +38,38 @@ export const TEST_OBJECT1 = {
   age: AGE_VALUE1,
   firstName: FIRST_NAME_VALUE1,
   lastName: LAST_NAME_VALUE1,
-  me: ME_VALUE1
+  me: ME_VALUE1,
 };
 
 export const TEST_OBJECT2 = {
   age: AGE_VALUE2,
   firstName: FIRST_NAME_VALUE2,
   lastName: LAST_NAME_VALUE2,
-  me: ME_VALUE2
+  me: ME_VALUE2,
 };
 
 export const MULTIPLE_DOCUMENTS_TEST_OBJECT = {
   person1: TEST_OBJECT1,
-  person2: TEST_OBJECT2
+  person2: TEST_OBJECT2,
 };
 
 export const MULTIPLE_ARRAYS_TEST_OBJECT = {
   ages: [AGE_VALUE1, AGE_VALUE2],
   first_names: [
     { firstName: FIRST_NAME_VALUE1 },
-    { firstName: FIRST_NAME_VALUE2 }
+    { firstName: FIRST_NAME_VALUE2 },
   ],
   last_names: [{ lastName: LAST_NAME_VALUE1 }, { lastName: LAST_NAME_VALUE2 }],
   people: [
     {
       age: AGE_VALUE1,
       firstName: FIRST_NAME_VALUE1,
-      lastName: LAST_NAME_VALUE1
+      lastName: LAST_NAME_VALUE1,
     },
     {
       age: AGE_VALUE2,
       firstName: FIRST_NAME_VALUE2,
-      lastName: LAST_NAME_VALUE2
-    }
-  ]
+      lastName: LAST_NAME_VALUE2,
+    },
+  ],
 };
