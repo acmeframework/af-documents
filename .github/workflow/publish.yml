@@ -1,0 +1,24 @@
+name: Publish
+
+on:
+  release:
+    type:
+      - published
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+
+      - name: NPM use ci to install cleanly
+        run: npm ci
+
+      - name: Clean, test, and compile
+        run: npm run build
+
+      - name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
