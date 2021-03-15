@@ -1,6 +1,6 @@
 {
   "name": "af-documents",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A library for managing Documents with Properties",
   "main": "dist/lib/index.js",
   "scripts": {
@@ -75,6 +75,7 @@
     "mochawesome": "^6.2.2",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
     "sinon": "^9.2.4",
     "source-map-support": "^0.5.19",
     "ts-node": "^9.1.1",
