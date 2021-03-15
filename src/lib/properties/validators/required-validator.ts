@@ -32,14 +32,14 @@ export class RequiredValidator<
       (this.options.required || this.options.invalidIfNotRequiredAndEmpty)
     ) {
       this.addEmptyError([
-        this.options.displayName + ' is empty and is required.'
+        this.options.displayName + ' is empty and is required.',
       ]);
       return Promise.resolve(false);
     }
     return Promise.resolve(true);
   }
 
-  protected _validateOptions(newOptions: O) {
+  protected _validateOptions(newOptions: O): void {
     super._validateOptions(newOptions);
 
     const haveParent = isUsable(this.options.parent);

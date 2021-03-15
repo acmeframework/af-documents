@@ -27,7 +27,7 @@ export class NumberValidator<
           this.options.displayName +
             ' cannot be less than the minimum value. (' +
             this.options.minValue +
-            ')'
+            ')',
         ]);
       }
     }
@@ -38,14 +38,14 @@ export class NumberValidator<
           this.options.displayName +
             ' cannot be greater than the maximum value. (' +
             this.options.maxValue +
-            ')'
+            ')',
         ]);
       }
     }
     return Promise.resolve(valid);
   }
 
-  protected _validateOptions(newOptions: O) {
+  protected _validateOptions(newOptions: O): void {
     super._validateOptions(newOptions);
 
     const haveParent = isUsable(this.options.parent);

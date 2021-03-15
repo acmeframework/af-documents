@@ -11,17 +11,15 @@ import {
   numberPropertyFactory,
 } from '../../../src/lib';
 
-// tslint:disable:no-unused-expression
-
-describe('NumberProperty class', function() {
+describe('NumberProperty class', function () {
   const PROPERTY_NAME = 'Number Property';
   const NUMBER_DATA = 102696;
 
-  describe('Test the factory method', function() {
+  describe('Test the factory method', function () {
     const dnpo = {
       ...DEFAULT_ENTITY_OPTIONS,
       ...DEFAULT_PROPERTY_OPTIONS,
-      ...DEFAULT_NUMBER_PROPERTY_OPTION
+      ...DEFAULT_NUMBER_PROPERTY_OPTION,
     };
     let np: NumberProperty;
 
@@ -30,7 +28,7 @@ describe('NumberProperty class', function() {
       expect(npo).to.deep.equal(dnpo);
     }
 
-    it('creates a NumberProperty with all defaults', function() {
+    it('creates a NumberProperty with all defaults', function () {
       np = numberPropertyFactory(NUMBER_DATA);
       expect(np).to.be.an.instanceof(NumberProperty);
 
@@ -41,7 +39,7 @@ describe('NumberProperty class', function() {
       testOptions();
     });
 
-    it('creates a NumberProperty with a supplied name', function() {
+    it('creates a NumberProperty with a supplied name', function () {
       np = numberPropertyFactory(NUMBER_DATA, PROPERTY_NAME);
       expect(np).to.be.an.instanceof(NumberProperty);
 

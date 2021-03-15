@@ -20,8 +20,6 @@ const setTimeoutPromise = util.promisify(setTimeout);
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
-// tslint:disable:no-unused-expression no-null-keyword no-console
-
 // NOTE: The following class are not intended to provide REAL validation. Only validation,
 // that exercises the methods of the class.
 
@@ -70,7 +68,7 @@ class StringValidatorTester extends ValidatorTester<string> {
 class StringValidatorEnrichmentTester extends ValidatorTester<string> {
   protected testValue(value: string): boolean {
     const enrichedData = {
-      firstThree: 'Hel'
+      firstThree: 'Hel',
     };
 
     this.emitEnrichedData(enrichedData, value);
@@ -93,12 +91,12 @@ class BooleanValidatorTester extends ValidatorTester<boolean> {
   }
 }
 
-describe('Validator class', function() {
+describe('Validator class', function () {
   const VALIDATOR_NAME = 'Test Validator';
   const STRING_DATA = 'Hello World';
 
-  describe('Test the construction and options', function() {
-    it('tests construction of the object with options to test all paths', function() {
+  describe('Test the construction and options', function () {
+    it('tests construction of the object with options to test all paths', function () {
       expect(
         new StringValidatorTester({ name: VALIDATOR_NAME })
       ).to.be.an.instanceof(StringValidatorTester);
@@ -107,6 +105,7 @@ describe('Validator class', function() {
         StringValidatorTester
       );
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       expect(new StringValidatorTester(null)).to.be.an.instanceof(
         StringValidatorTester
@@ -135,9 +134,9 @@ describe('Validator class', function() {
       expect(svto).to.deep.equal(testOptions);
     }
 
-    it('ensures all options have valid values', function() {
+    it('ensures all options have valid values', function () {
       const loadOptions: PropertyValidatorTesterOptions = {
-        name: VALIDATOR_NAME
+        name: VALIDATOR_NAME,
       };
 
       // All defaults (displayName = name by default)
@@ -145,7 +144,7 @@ describe('Validator class', function() {
         delayResponse: false,
         displayName: VALIDATOR_NAME,
         name: VALIDATOR_NAME,
-        required: false
+        required: false,
       };
 
       // Test defaults
@@ -157,7 +156,7 @@ describe('Validator class', function() {
     });
   });
 
-  describe('Testing functionality of the class as a String', function() {
+  describe('Testing functionality of the class as a String', function () {
     const EMPTY_STRING_DATA = '';
     const LONG_STRING_DATA =
       '123456789(10)123456789' +
@@ -171,32 +170,32 @@ describe('Validator class', function() {
       { name: VALIDATOR_NAME, delayResponse: true }, // 4
       { name: VALIDATOR_NAME }, // 5
       { name: VALIDATOR_NAME, required: true }, // 6
-      {} // 7
+      {}, // 7
     ];
 
     let svt: StringValidatorTester;
     let testNumber = 0;
 
-    beforeEach(function() {
+    beforeEach(function () {
       const options = TEST_OPTIONS[testNumber++];
       svt = new StringValidatorTester(options);
     });
 
-    it(' 1. validates a default Validator (String)', async function() {
+    it(' 1. validates a default Validator (String)', async function () {
       expect(await svt.validate(STRING_DATA)).to.be.true;
 
       // this is for coverage and should simply return
       expect(await svt.validate(STRING_DATA)).to.be.true;
     });
 
-    it(' 2. tests if the data is empty, required is true', async function() {
+    it(' 2. tests if the data is empty, required is true', async function () {
       expect(await svt.validate(EMPTY_STRING_DATA)).to.be.false;
       expect(svt.getErrors()[0].code).to.be.equal(
         ValidatorErrorCodes.RequiredAndEmpty
       );
     });
 
-    it(' 3. tests if the data is empty, required is false', async function() {
+    it(' 3. tests if the data is empty, required is false', async function () {
       expect(await svt.validate(EMPTY_STRING_DATA)).to.be.false;
       expect(svt.getErrors()[0].code).to.be.equal(ValidatorErrorCodes.Empty);
     });
@@ -204,7 +203,7 @@ describe('Validator class', function() {
     it(
       ' 4. tests if the data is empty, required is false, validation ' +
         'is delayed 200ms',
-      async function() {
+      async function () {
         async function firstTest() {
           expect(await svt.validate(EMPTY_STRING_DATA)).to.be.false;
           expect(svt.getErrors()[0].code).to.be.equal(
@@ -242,7 +241,7 @@ describe('Validator class', function() {
     it(
       ' 5. tests isValueAllowed and reset and addInvalidError for ' +
         'coverage.',
-      async function() {
+      async function () {
         expect(svt.isValueAllowed(LONG_STRING_DATA)).to.be.true;
         expect(await svt.validate(LONG_STRING_DATA)).to.be.false;
         expect(svt.getErrors()[0].code).to.be.equal(
@@ -254,14 +253,14 @@ describe('Validator class', function() {
       }
     );
 
-    it(' 6. tests isValueAllowed while the value is required.', async function() {
+    it(' 6. tests isValueAllowed while the value is required.', async function () {
       expect(await svt.validate(LONG_STRING_DATA)).to.be.false;
       expect(svt.getErrors()[0].code).to.be.equal(
         ValidatorErrorCodes.RequiredAndInvalid
       );
     });
 
-    it(' 7. validates that the object gets a default name', function() {
+    it(' 7. validates that the object gets a default name', function () {
       const options = svt.getOptions();
       expect(options.name).to.equal(
         DEFAULT_VALIDATOR_NAME + '_' + Validator.getValidatorCount()
@@ -269,24 +268,24 @@ describe('Validator class', function() {
     });
   });
 
-  describe('Testing validation of the class with data enrichment', function() {
+  describe('Testing validation of the class with data enrichment', function () {
     const STRING_DATA_FIRST_THREE = 'Hel';
     const testEvent: ValidatorEnrichedDataEvent<string> = {
       context: undefined,
       displayName: VALIDATOR_NAME,
       enrichedData: {
-        firstThree: STRING_DATA_FIRST_THREE
+        firstThree: STRING_DATA_FIRST_THREE,
       },
       name: VALIDATOR_NAME,
-      value: STRING_DATA
+      value: STRING_DATA,
     };
 
-    it('tests that validate emits the first 3 characters of the data', async function() {
+    it('tests that validate emits the first 3 characters of the data', async function () {
       const gsvet = new StringValidatorEnrichmentTester({
-        name: VALIDATOR_NAME
+        name: VALIDATOR_NAME,
       });
       let enrichedData: any;
-      gsvet.on(VALIDATOR_ENRICHED_DATA_EVENT, event => {
+      gsvet.on(VALIDATOR_ENRICHED_DATA_EVENT, (event) => {
         enrichedData = event;
       });
 
@@ -296,69 +295,69 @@ describe('Validator class', function() {
     });
   });
 
-  describe('Testing validation of the class as a Number', function() {
+  describe('Testing validation of the class as a Number', function () {
     const NUMBER_DATA = 102696;
     const NAN_NUMBER_DATA = NaN;
 
     const TEST_OPTIONS = [
       { name: VALIDATOR_NAME },
       { name: VALIDATOR_NAME, required: true },
-      { name: VALIDATOR_NAME }
+      { name: VALIDATOR_NAME },
     ];
 
     let nvt: NumberValidatorTester;
     let testNumber = 0;
 
-    beforeEach(function() {
+    beforeEach(function () {
       const options = TEST_OPTIONS[testNumber++];
       nvt = new NumberValidatorTester(options);
     });
 
-    it('validates a default Validator (Number)', async function() {
+    it('validates a default Validator (Number)', async function () {
       expect(await nvt.validate(NUMBER_DATA)).to.be.true;
     });
 
-    it('validates NaN, when required', async function() {
+    it('validates NaN, when required', async function () {
       expect(await nvt.validate(NAN_NUMBER_DATA)).to.be.false;
       expect(nvt.getErrors()[0].code).to.equal(
         ValidatorErrorCodes.RequiredAndEmpty
       );
     });
 
-    it('validates NaN, when not required', async function() {
+    it('validates NaN, when not required', async function () {
       expect(await nvt.validate(NAN_NUMBER_DATA)).to.be.true;
     });
   });
 
-  describe('Testing validation of the class as a Boolean', function() {
+  describe('Testing validation of the class as a Boolean', function () {
     const BOOLEAN_DATA = true;
     const NEW_BOOLEAN_DATA = false;
 
     const TEST_OPTIONS = [
       { name: VALIDATOR_NAME },
       { name: VALIDATOR_NAME, required: true },
-      { name: VALIDATOR_NAME }
+      { name: VALIDATOR_NAME },
     ];
 
     let bvt: BooleanValidatorTester;
     let testNumber = 0;
 
-    beforeEach(function() {
+    beforeEach(function () {
       const options = TEST_OPTIONS[testNumber++];
       bvt = new BooleanValidatorTester(options);
     });
 
-    it('validates a default Validator (Boolean)', async function() {
+    it('validates a default Validator (Boolean)', async function () {
       expect(await bvt.validate(BOOLEAN_DATA)).to.be.true;
     });
 
     // This may seem strange but effectively if you actually
     // create a boolean property and require a value AND that value
     // is false THEN the isValid method will return false. The actual
-    // decendant class BooleanProperty temporarily sets the required option
+    // descendant class BooleanProperty temporarily sets the required option
     // to false when calling the super.isValid to ensure this wacky but
     // valid logic doesn't come and bite you.
-    it('validates false, when required', async function() {
+    it('validates false, when required', async function () {
       expect(await bvt.validate(NEW_BOOLEAN_DATA)).to.be.false;
       expect(bvt.getErrors()[0].code).to.equal(
         ValidatorErrorCodes.RequiredAndEmpty
@@ -369,7 +368,7 @@ describe('Validator class', function() {
     // ALWAYS be valid since a boolean value only has two values
     // and we do not allow undefined or null to be set as a value
     // within these properties.
-    it('validates false, when not required', async function() {
+    it('validates false, when not required', async function () {
       expect(await bvt.validate(NEW_BOOLEAN_DATA)).to.be.true;
     });
   });

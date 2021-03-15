@@ -12,9 +12,9 @@ import {
   ImmutablePropertyOptions,
 } from '../../../src/lib';
 
-// tslint:disable:no-unused-expression no-null-keyword
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 
-describe('ImmutableProperty class', function() {
+describe('ImmutableProperty class', function () {
   const PROPERTY_NAME = 'Immutable Property';
 
   const STRING_DATA = 'Hello World';
@@ -24,11 +24,11 @@ describe('ImmutableProperty class', function() {
   const FIRST_HALF_CONST_DATA = 'Hello ';
   const SECOND_HALF_CONST_DATA = 'World';
 
-  describe('Test the static method getNextPropertyCount', function() {
+  describe('Test the static method getNextPropertyCount', function () {
     it(
       'ensures that successive calls to getNexPropertyCount provides ' +
         'sequential results',
-      function() {
+      function () {
         let x = ImmutableProperty.getPropertyCount();
         expect(ImmutableProperty.getNextPropertyCount()).to.equal(++x);
         expect(ImmutableProperty.getNextPropertyCount()).to.equal(++x);
@@ -37,42 +37,42 @@ describe('ImmutableProperty class', function() {
     );
   });
 
-  describe('Test the construction and options', function() {
-    it('throws a TypeError during construction', function() {
-      expect(function() {
+  describe('Test the construction and options', function () {
+    it('throws a TypeError during construction', function () {
+      expect(function () {
         // @ts-ignore
         new ImmutableProperty<string>(undefined, PROPERTY_NAME);
       }).to.throw(TypeError);
 
-      expect(function() {
+      expect(function () {
         // @ts-ignore
         new ImmutableProperty<string>(null, PROPERTY_NAME);
       }).to.throw(TypeError);
 
-      expect(function() {
+      expect(function () {
         // @ts-ignore
         new ImmutableProperty<string>(STRING_DATA, undefined);
       }).to.throw(TypeError);
 
-      expect(function() {
+      expect(function () {
         // @ts-ignore
         new ImmutableProperty<string>(STRING_DATA, null);
       }).to.throw(TypeError);
     });
 
-    it('instantiates a valid ImmutableProperty', function() {
+    it('instantiates a valid ImmutableProperty', function () {
       expect(
         new ImmutableProperty<string>(STRING_DATA, PROPERTY_NAME)
       ).to.be.an.instanceof(ImmutableProperty);
     });
   });
 
-  describe('Test the factory method', function() {
+  describe('Test the factory method', function () {
     const dipo: ImmutablePropertyOptions = {
       name: PROPERTY_NAME,
       validationStopOnInvalid: DEFAULT_VALIDATION_STOP_ON_INVALID,
       validationWaitInterval: DEFAULT_VALIDATION_WAIT_INTERVAL,
-      validationWaitTimeout: DEFAULT_VALIDATION_WAIT_TIMEOUT
+      validationWaitTimeout: DEFAULT_VALIDATION_WAIT_TIMEOUT,
     };
 
     let sip: ImmutableProperty<string>;
@@ -82,7 +82,7 @@ describe('ImmutableProperty class', function() {
       expect(ipo).to.deep.equal(dipo);
     }
 
-    it('creates a ImmutableProperty with all defaults', function() {
+    it('creates a ImmutableProperty with all defaults', function () {
       sip = immutablePropertyFactory(STRING_DATA);
       expect(sip).to.be.an.instanceof(ImmutableProperty);
 
@@ -93,7 +93,7 @@ describe('ImmutableProperty class', function() {
       testOptions();
     });
 
-    it('creates a ImmutableProperty with a supplied name', function() {
+    it('creates a ImmutableProperty with a supplied name', function () {
       sip = immutablePropertyFactory(STRING_DATA, PROPERTY_NAME);
       expect(sip).to.be.an.instanceof(ImmutableProperty);
 
@@ -103,29 +103,29 @@ describe('ImmutableProperty class', function() {
     });
   });
 
-  describe('Testing functionality of the class (as a String)', function() {
+  describe('Testing functionality of the class (as a String)', function () {
     let sip: ImmutableProperty<string>;
 
-    beforeEach(function() {
+    beforeEach(function () {
       sip = new ImmutableProperty(STRING_DATA, PROPERTY_NAME);
     });
 
-    it('validates a default ImmutableProperty', async function() {
+    it('validates a default ImmutableProperty', async function () {
       expect(sip.isValidating()).to.be.false;
       expect(await sip.validate()).to.be.true;
       expect(sip.isValid()).to.be.true;
       expect(sip.getErrors().length).to.equal(0);
     });
 
-    it('gets the name of the ImmutableProperty', function() {
+    it('gets the name of the ImmutableProperty', function () {
       expect(sip.getName()).to.equal(PROPERTY_NAME);
     });
 
-    it('check the isEqual method', function() {
+    it('check the isEqual method', function () {
       expect(sip.isEqual(NUMBER_STRING_DATA)).to.be.false;
     });
 
-    it('exercises the normalize workflow', function() {
+    it('exercises the normalize workflow', function () {
       // isNormalized will always return true!
       expect(sip.isNormalized()).to.be.true;
       sip.normalize();
@@ -133,25 +133,21 @@ describe('ImmutableProperty class', function() {
       expect(sip.isNormalized()).to.be.true;
     });
 
-    it('isRequired returns false - always', function() {
+    it('isRequired returns false - always', function () {
       expect(sip.isRequired()).to.be.false;
     });
 
-    it('uses toString to get the string value of ImmutableProperty', function() {
-      expect(sip.toString())
-        .to.be.a('string')
-        .to.equal(STRING_DATA);
+    it('uses toString to get the string value of ImmutableProperty', function () {
+      expect(sip.toString()).to.be.a('string').to.equal(STRING_DATA);
     });
 
-    it('uses valueOf to get the value of the ImmutableProperty', function() {
-      expect(sip.valueOf())
-        .to.be.a('string')
-        .to.equal(STRING_DATA);
+    it('uses valueOf to get the value of the ImmutableProperty', function () {
+      expect(sip.valueOf()).to.be.a('string').to.equal(STRING_DATA);
     });
 
     it(
       'uses valueOf to add two ImmutableProperty<string> objects ' + 'together',
-      function() {
+      function () {
         sip = new ImmutableProperty<string>(
           FIRST_HALF_CONST_DATA,
           PROPERTY_NAME
@@ -169,20 +165,18 @@ describe('ImmutableProperty class', function() {
     );
   });
 
-  describe('Testing functionality of the class (as a String)', function() {
+  describe('Testing functionality of the class (as a String)', function () {
     let nip: ImmutableProperty<number>;
 
-    beforeEach(function() {
+    beforeEach(function () {
       nip = new ImmutableProperty(NUMBER_DATA, PROPERTY_NAME);
     });
 
     it(
       'uses toString on a numeric ImmutableProperty to get the string ' +
         'value',
-      function() {
-        expect(nip.toString())
-          .to.be.a('string')
-          .to.equal(NUMBER_STRING_DATA);
+      function () {
+        expect(nip.toString()).to.be.a('string').to.equal(NUMBER_STRING_DATA);
       }
     );
   });

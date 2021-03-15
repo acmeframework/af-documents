@@ -13,18 +13,16 @@ import {
   RegExpPropertyOptions,
 } from '../../../src/lib';
 
-// tslint:disable:no-unused-expression
-
-describe('RegExpProperty class', function() {
+describe('RegExpProperty class', function () {
   const PROPERTY_NAME = 'RegExp Property';
   const REGEXP_DATA = 'Hello World';
 
-  describe('Test the factory method', function() {
+  describe('Test the factory method', function () {
     const drepo = {
       ...DEFAULT_ENTITY_OPTIONS,
       ...DEFAULT_PROPERTY_OPTIONS,
       ...DEFAULT_STRING_PROPERTY_OPTIONS,
-      ...DEFAULT_REGEXP_PROPERTY_OPTIONS
+      ...DEFAULT_REGEXP_PROPERTY_OPTIONS,
     };
     let rep: RegExpProperty;
 
@@ -33,7 +31,7 @@ describe('RegExpProperty class', function() {
       expect(repo).to.deep.equal(drepo);
     }
 
-    it('creates a RegExpProperty with all defaults', function() {
+    it('creates a RegExpProperty with all defaults', function () {
       rep = regexpPropertyFactory(REGEXP_DATA);
       expect(rep).to.be.an.instanceof(RegExpProperty);
 
@@ -44,7 +42,7 @@ describe('RegExpProperty class', function() {
       testOptions();
     });
 
-    it('creates a RegExpProperty with a supplied name', function() {
+    it('creates a RegExpProperty with a supplied name', function () {
       rep = regexpPropertyFactory(REGEXP_DATA, PROPERTY_NAME);
       expect(rep).to.be.an.instanceof(RegExpProperty);
 
@@ -53,7 +51,7 @@ describe('RegExpProperty class', function() {
       testOptions();
     });
 
-    it('creates a RegExpProperty with options', function() {
+    it('creates a RegExpProperty with options', function () {
       rep = regexpPropertyFactory(
         REGEXP_DATA,
         undefined,
@@ -64,9 +62,9 @@ describe('RegExpProperty class', function() {
       expect(rep).to.be.an.instanceof(RegExpProperty);
     });
 
-    it('creates a RegExpProperty with no mask specified', function() {
+    it('creates a RegExpProperty with no mask specified', function () {
       rep = new RegExpProperty(REGEXP_DATA, {
-        name: PROPERTY_NAME
+        name: PROPERTY_NAME,
       } as RegExpPropertyOptions);
       expect(rep).to.be.an.instanceof(RegExpProperty);
     });

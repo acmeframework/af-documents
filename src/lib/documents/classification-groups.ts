@@ -29,8 +29,8 @@ export const propertyClassificationGroups: ClassificationGroupParts[] = [
       'zip_code',
       'postal_code',
       'county',
-      'country'
-    ]
+      'country',
+    ],
   },
   {
     name: 'person',
@@ -40,11 +40,11 @@ export const propertyClassificationGroups: ClassificationGroupParts[] = [
       'name_middle',
       'name_last',
       'name_suffix',
-      'date_birth'
-    ]
+      'date_birth',
+    ],
   },
   {
     name: 'geospatial',
-    parts: ['geohash', 'latitude', 'longitude']
-  }
+    parts: ['geohash', 'latitude', 'longitude'],
+  },
 ];

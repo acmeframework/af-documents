@@ -12,11 +12,9 @@ export interface RegExpPropertyOptions extends StringPropertyOptions {
   mask?: RegExp;
 }
 
-export const DEFAULT_REGEXP_PROPERTY_OPTIONS: Readonly<
-  RegExpPropertyOptions
-> = {
+export const DEFAULT_REGEXP_PROPERTY_OPTIONS: Readonly<RegExpPropertyOptions> = {
   mask: DEFAULT_REGEXP_MASK,
-  name: DEFAULT_REGEXP_PROPERTY_NAME
+  name: DEFAULT_REGEXP_PROPERTY_NAME,
 };
 
 export class RegExpProperty<

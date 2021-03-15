@@ -20,7 +20,7 @@ export enum ValidatorErrorCodes {
   RequiredAndEmpty,
   Invalid,
   RequiredAndInvalid,
-  ValidationFailed
+  ValidationFailed,
 }
 
 export interface ValidatorError {
@@ -99,7 +99,7 @@ export abstract class Validator<
   constructor(newOptions?: O) {
     super();
 
-    // We use this call to allow decendants to set defaults for higher-level
+    // We use this call to allow descendants to set defaults for higher-level
     // option properties prior to them being tested.
     this._validateOptions(newOptions);
     delete this.options.parent; // Now remove the reference
@@ -164,7 +164,7 @@ export abstract class Validator<
       code: errorCode,
       displayName: this.options.displayName,
       message,
-      name: this.options.name!
+      name: this.options.name!,
     });
   }
 
@@ -177,26 +177,27 @@ export abstract class Validator<
     );
   }
 
-  protected emitEnrichedData(enrichedData: any, value: T) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  protected emitEnrichedData(enrichedData: any, value: T): void {
     const event: ValidatorEnrichedDataEvent<T> = {
       context: this,
       displayName: this.options.displayName!,
       enrichedData,
       name: this.options.name!,
-      value
+      value,
     };
     this.emit(VALIDATOR_ENRICHED_DATA_EVENT, event, this);
   }
 
-  protected abstract async _validate(value: T): Promise<boolean>;
+  protected abstract _validate(value: T): Promise<boolean>;
 
-  protected _validateOptions(newOptions: O | undefined) {
+  protected _validateOptions(newOptions: O | undefined): void {
     const gc = Validator.getNextValidatorCount();
     const defaultOptions: O = {
       displayName: DEFAULT_VALIDATOR_NAME + '_' + gc,
       name: DEFAULT_VALIDATOR_NAME + '_' + gc,
       parent: undefined,
-      required: DEFAULT_REQUIRED
+      required: DEFAULT_REQUIRED,
     } as O;
 
     if (isUsable(newOptions)) {

@@ -9,13 +9,14 @@ import {
 } from './email-property-defs';
 import { RegExpProperty, RegExpPropertyOptions } from './regexp-property';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface EmailPropertyOptions extends RegExpPropertyOptions {}
 
 export const DEFAULT_EMAIL_PROPERTY_OPTIONS: Readonly<EmailPropertyOptions> = {
   mask: DEFAULT_EMAIL_MASK,
   maxLength: MAXIMUM_EMAIL_ADDRESS_LEN,
   minLength: MINIMUM_EMAIL_ADDRESS_LEN,
-  name: DEFAULT_EMAIL_PROPERTY_NAME
+  name: DEFAULT_EMAIL_PROPERTY_NAME,
 };
 
 export class EmailProperty<

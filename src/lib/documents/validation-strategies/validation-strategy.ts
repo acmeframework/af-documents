@@ -10,6 +10,7 @@ import {
 } from '../../entity';
 import { Document, DocumentOptions } from '../document';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ValidationStrategyOptions extends EntityOptions {}
 
 export abstract class ValidationStrategy<
@@ -64,7 +65,7 @@ export abstract class ValidationStrategy<
     }
   }
 
-  protected abstract async _validate(date: T): Promise<boolean>;
+  protected abstract _validate(date: T): Promise<boolean>;
 
   protected _getParentOption(
     parentOptions: DocumentOptions,

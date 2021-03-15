@@ -10,8 +10,6 @@ import {
   EntityOptions,
 } from '../../src/lib';
 
-// tslint:disable:no-unused-expression no-null-keyword
-
 class EntityTester<T = any> extends Entity<T, EntityOptions> {
   public normalize(): void {
     return;
@@ -22,9 +20,9 @@ class EntityTester<T = any> extends Entity<T, EntityOptions> {
   }
 }
 
-describe('Entity class', function() {
-  describe('Test the construction and options', function() {
-    it('instantiates a valid Entity object', function() {
+describe('Entity class', function () {
+  describe('Test the construction and options', function () {
+    it('instantiates a valid Entity object', function () {
       expect(new EntityTester()).to.be.an.instanceof(EntityTester);
     });
 
@@ -37,14 +35,14 @@ describe('Entity class', function() {
       expect(spto).to.deep.equal(testOptions);
     }
 
-    it('ensures all options have valid values', function() {
+    it('ensures all options have valid values', function () {
       const loadOptions: EntityOptions = {};
 
       // All defaults (displayName = name by default)
       const testOptions: EntityOptions = {
         validationStopOnInvalid: DEFAULT_VALIDATION_STOP_ON_INVALID,
         validationWaitInterval: DEFAULT_VALIDATION_WAIT_INTERVAL,
-        validationWaitTimeout: DEFAULT_VALIDATION_WAIT_TIMEOUT
+        validationWaitTimeout: DEFAULT_VALIDATION_WAIT_TIMEOUT,
       };
 
       // Test all defaults

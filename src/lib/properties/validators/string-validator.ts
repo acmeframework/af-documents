@@ -24,7 +24,7 @@ export class StringValidator<
 
       if (!valid) {
         this.addInvalidError([
-          this.options.displayName + ' is shorter than the minimum length.'
+          this.options.displayName + ' is shorter than the minimum length.',
         ]);
       }
     }
@@ -32,14 +32,14 @@ export class StringValidator<
       valid = value.length <= this.options.maxLength!;
       if (!valid) {
         this.addInvalidError([
-          this.options.displayName + ' is longer than the maximum length.'
+          this.options.displayName + ' is longer than the maximum length.',
         ]);
       }
     }
     return Promise.resolve(valid);
   }
 
-  protected _validateOptions(newOptions: O) {
+  protected _validateOptions(newOptions: O): void {
     super._validateOptions(newOptions);
 
     const haveParent = isUsable(this.options.parent);

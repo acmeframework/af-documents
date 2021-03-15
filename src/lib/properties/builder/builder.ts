@@ -23,7 +23,7 @@ export function getPropertyDescription(
 }
 
 export function propertyBuilder(
-  value: any,
+  value: any, // eslint-disable-line @typescript-eslint/explicit-module-boundary-types
   propertyName: string,
   displayName?: string,
   aliasMap?: PropertyMap

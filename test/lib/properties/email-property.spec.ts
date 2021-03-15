@@ -14,19 +14,17 @@ import {
   EmailPropertyOptions,
 } from '../../../src/lib';
 
-// tslint:disable:no-unused-expression
-
-describe('EmailProperty class', function() {
+describe('EmailProperty class', function () {
   const PROPERTY_NAME = 'Email Property';
   const EMAIL_DATA = 'test@example.com';
 
-  describe('Test the factory method', function() {
+  describe('Test the factory method', function () {
     const depo = {
       ...DEFAULT_ENTITY_OPTIONS,
       ...DEFAULT_PROPERTY_OPTIONS,
       ...DEFAULT_STRING_PROPERTY_OPTIONS,
       ...DEFAULT_REGEXP_PROPERTY_OPTIONS,
-      ...DEFAULT_EMAIL_PROPERTY_OPTIONS
+      ...DEFAULT_EMAIL_PROPERTY_OPTIONS,
     };
     let ep: EmailProperty;
 
@@ -35,7 +33,7 @@ describe('EmailProperty class', function() {
       expect(epo).to.deep.equal(depo);
     }
 
-    it('creates a EmailProperty with defaults for an email address', function() {
+    it('creates a EmailProperty with defaults for an email address', function () {
       ep = emailPropertyFactory(EMAIL_DATA);
       expect(ep).to.be.an.instanceof(EmailProperty);
 
@@ -46,7 +44,7 @@ describe('EmailProperty class', function() {
       testOptions();
     });
 
-    it('creates a EmailProperty with a supplied name', function() {
+    it('creates a EmailProperty with a supplied name', function () {
       ep = emailPropertyFactory(EMAIL_DATA, PROPERTY_NAME);
       expect(ep).to.be.an.instanceof(EmailProperty);
 
@@ -55,24 +53,24 @@ describe('EmailProperty class', function() {
       testOptions();
     });
 
-    it('creates a EmailProperty with various options', function() {
+    it('creates a EmailProperty with various options', function () {
       // No options
       ep = new EmailProperty(EMAIL_DATA, {
-        name: PROPERTY_NAME
+        name: PROPERTY_NAME,
       } as EmailPropertyOptions);
       expect(ep).to.be.an.instanceof(EmailProperty);
 
       // maxLength set to high...
       ep = new EmailProperty(EMAIL_DATA, {
         maxLength: 3000,
-        name: PROPERTY_NAME
+        name: PROPERTY_NAME,
       } as EmailPropertyOptions);
       expect(ep).to.be.an.instanceof(EmailProperty);
 
       // minLength set to low...
       ep = new EmailProperty(EMAIL_DATA, {
         minLength: 2,
-        name: PROPERTY_NAME
+        name: PROPERTY_NAME,
       } as EmailPropertyOptions);
       expect(ep).to.be.an.instanceof(EmailProperty);
 
@@ -80,15 +78,15 @@ describe('EmailProperty class', function() {
       ep = new EmailProperty(EMAIL_DATA, {
         maxLength: 3,
         minLength: 5,
-        name: PROPERTY_NAME
+        name: PROPERTY_NAME,
       } as EmailPropertyOptions);
       expect(ep).to.be.an.instanceof(EmailProperty);
 
-      // minLength set higer than maxLength...
+      // minLength set higher than maxLength...
       ep = new EmailProperty(EMAIL_DATA, {
         maxLength: 10,
         minLength: 255,
-        name: PROPERTY_NAME
+        name: PROPERTY_NAME,
       } as EmailPropertyOptions);
       expect(ep).to.be.an.instanceof(EmailProperty);
     });
@@ -110,7 +108,7 @@ describe('EmailProperty class', function() {
    */
   // TODO: Build test cases and code to cover all possible email address
   // TODO: formats allowed by the RFC's.
-  describe('Tests various email formats for validation', function() {
+  describe('Tests various email formats for validation', function () {
     const goodTestEmails = [
       'test@example.com',
       'test+me@example.com',
@@ -127,7 +125,7 @@ describe('EmailProperty class', function() {
       // !"test@example",
       // ! "\"()<>[]:,;@\\\"!#$%&'-/=?^_`{}| ~.a\"@example.org",
       'example@s.example',
-      'test@[192.168.1.1]'
+      'test@[192.168.1.1]',
       // ! "test@[2001:DB8::1]",
       // ! "\" \"@example.com"
     ];
@@ -146,12 +144,12 @@ describe('EmailProperty class', function() {
       'this is"notallowed@example.com',
       'this still"not\\allowed@example.com',
       // ! "1234567890123456789012345678901234567890123456789012345678901234+x@example.com",
-      'test.me@example..com'
+      'test.me@example..com',
     ];
 
     goodTestEmails.forEach(
       async (value: string): Promise<void> => {
-        it(`expects the email address ${value} to be valid`, async function() {
+        it(`expects the email address ${value} to be valid`, async function () {
           const ep = emailPropertyFactory(value, PROPERTY_NAME);
           expect(await ep.validate()).to.be.true;
         });
@@ -160,7 +158,7 @@ describe('EmailProperty class', function() {
 
     badTestEmails.forEach(
       async (value: string): Promise<void> => {
-        it(`expects the email address ${value} to be invalid`, async function() {
+        it(`expects the email address ${value} to be invalid`, async function () {
           const ep = emailPropertyFactory(value, PROPERTY_NAME);
           expect(await ep.validate()).to.be.false;
         });

@@ -18,13 +18,13 @@ export class RegExpValidator<
     const valid = this.options.mask!.test(value);
     if (!valid) {
       this.addInvalidError([
-        this.options.displayName + ' is not in the required format.'
+        this.options.displayName + ' is not in the required format.',
       ]);
     }
     return Promise.resolve(valid);
   }
 
-  protected _validateOptions(newOptions: O) {
+  protected _validateOptions(newOptions: O): void {
     super._validateOptions(newOptions);
 
     const haveParent = isUsable(this.options.parent);

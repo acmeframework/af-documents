@@ -27,16 +27,14 @@ export interface StringPropertyOptions extends PropertyOptions {
   trimRight?: boolean;
 }
 
-export const DEFAULT_STRING_PROPERTY_OPTIONS: Readonly<
-  StringPropertyOptions
-> = {
+export const DEFAULT_STRING_PROPERTY_OPTIONS: Readonly<StringPropertyOptions> = {
   maxLength: DEFAULT_STRING_MAX_LENGTH,
   minLength: DEFAULT_STRING_MIN_LENGTH,
   name: DEFAULT_STRING_PROPERTY_NAME,
   normalizeToLower: DEFAULT_STRING_NORMALIZE_TO_LOWER,
   normalizeToUpper: DEFAULT_STRING_NORMALIZE_TO_UPPER,
   trimLeft: DEFAULT_STRING_TRIM_LEFT,
-  trimRight: DEFAULT_STRING_TRIM_RIGHT
+  trimRight: DEFAULT_STRING_TRIM_RIGHT,
 };
 
 export class StringProperty<

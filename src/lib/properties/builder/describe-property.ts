@@ -76,7 +76,7 @@ export const propertyClassificationNames: ClassificationName[] = [
   'phone_number',
   'phone_number_extension',
   'date_birth',
-  'date_anniversary'
+  'date_anniversary',
 ];
 
 export type PropertyMap = Record<string, ClassificationName>;
@@ -142,7 +142,7 @@ export const propertyAliasMap: PropertyMap = {
   number: 'number',
   phone: 'phone_number',
   phone_number: 'phone_number',
-  phone_number_extension: 'phone_number_extention',
+  phone_number_extension: 'phone_number_extension',
   phoneext: 'phone_number_extension',
   phonenumber: 'phone_number',
   phonenumberext: 'phone_number_extension',
@@ -169,7 +169,7 @@ export const propertyAliasMap: PropertyMap = {
   worknumber: 'phone_number',
   zip: 'zip_code',
   zip_code: 'zip_code',
-  zipcode: 'zip_code'
+  zipcode: 'zip_code',
 };
 
 /**
@@ -202,8 +202,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
     options: {
       displayName: 'Address',
       maxLength: 255,
-      name: 'address_line'
-    } as StringPropertyOptions
+      name: 'address_line',
+    } as StringPropertyOptions,
   },
   boolean: {
     classification: 'boolean',
@@ -212,8 +212,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
     options: {
       displayName: 'Boolean',
       name: DEFAULT_BOOLEAN_PROPERTY_NAME,
-      required: false
-    }
+      required: false,
+    },
   },
   city: {
     classification: 'city',
@@ -223,8 +223,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'City',
       maxLength: 255,
       minLength: 1,
-      name: 'city'
-    } as StringPropertyOptions
+      name: 'city',
+    } as StringPropertyOptions,
   },
   country: {
     classification: 'country',
@@ -234,8 +234,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Country',
       maxLength: 255,
       minLength: 1,
-      name: 'country'
-    } as StringPropertyOptions
+      name: 'country',
+    } as StringPropertyOptions,
   },
   date_anniversary: {
     classification: 'date_anniversary',
@@ -245,8 +245,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Anniversary',
       maxLength: 10,
       minLength: 6,
-      name: 'anniversary'
-    } as StringPropertyOptions
+      name: 'anniversary',
+    } as StringPropertyOptions,
   },
   date_birth: {
     classification: 'date_birth',
@@ -256,8 +256,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Birthday',
       maxLength: 10,
       minLength: 6,
-      name: 'birthday'
-    } as StringPropertyOptions
+      name: 'birthday',
+    } as StringPropertyOptions,
   },
   email: {
     classification: 'email',
@@ -269,18 +269,18 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       maxLength: MAXIMUM_EMAIL_ADDRESS_LEN,
       minLength: MINIMUM_EMAIL_ADDRESS_LEN,
       name: DEFAULT_EMAIL_PROPERTY_NAME,
-      normalizeToLower: true
-    } as RegExpPropertyOptions
+      normalizeToLower: true,
+    } as RegExpPropertyOptions,
   },
   geohash: {
-    classification: 'geohas',
+    classification: 'geohash',
     descriptionName: 'GeoHash',
     factory: stringPropertyFactory,
     options: {
       displayName: 'GeoHash',
       minLength: 1,
-      name: 'geohash'
-    } as StringPropertyOptions
+      name: 'geohash',
+    } as StringPropertyOptions,
   },
   immutable: {
     classification: 'immutable',
@@ -288,8 +288,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
     factory: immutablePropertyFactory,
     options: {
       displayName: 'Immutable',
-      name: DEFAULT_IMMUTABLE_PROPERTY_NAME
-    }
+      name: DEFAULT_IMMUTABLE_PROPERTY_NAME,
+    },
   },
   ip_address: {
     classification: 'ip_address',
@@ -297,12 +297,11 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
     factory: regexpPropertyFactory,
     options: {
       displayName: 'IP Address',
-      // tslint:disable-next-line:max-line-length
       mask: /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
       maxLength: 15,
       minLength: 7,
-      name: 'ip_address'
-    } as RegExpPropertyOptions
+      name: 'ip_address',
+    } as RegExpPropertyOptions,
   },
   latitude: {
     classification: 'latitude',
@@ -310,9 +309,9 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
     factory: regexpPropertyFactory,
     options: {
       displayName: 'Latitude',
-      mask: /^(\-?\d+(\.\d+)?)$/,
-      name: 'latitude'
-    } as RegExpPropertyOptions
+      mask: /^(-?\d+(\.\d+)?)$/,
+      name: 'latitude',
+    } as RegExpPropertyOptions,
   },
   longitude: {
     classification: 'longitude',
@@ -320,9 +319,9 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
     factory: regexpPropertyFactory,
     options: {
       displayName: 'Longitude',
-      mask: /^(\-?\d+(\.\d+)?)$/,
-      name: 'longitude'
-    } as RegExpPropertyOptions
+      mask: /^(-?\d+(\.\d+)?)$/,
+      name: 'longitude',
+    } as RegExpPropertyOptions,
   },
   name_first: {
     classification: 'name_first',
@@ -332,8 +331,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'First Name',
       maxLength: 255,
       minLength: 1,
-      name: 'name_first'
-    } as StringPropertyOptions
+      name: 'name_first',
+    } as StringPropertyOptions,
   },
   name_last: {
     classification: 'name_last',
@@ -343,8 +342,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Last Name',
       maxLength: 255,
       minLength: 1,
-      name: 'name_last'
-    } as StringPropertyOptions
+      name: 'name_last',
+    } as StringPropertyOptions,
   },
   name_middle: {
     classification: 'name_middle',
@@ -354,8 +353,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Middle Name',
       maxLength: 255,
       minLength: 1,
-      name: 'name_middle'
-    } as StringPropertyOptions
+      name: 'name_middle',
+    } as StringPropertyOptions,
   },
   name_prefix: {
     classification: 'name_prefix',
@@ -365,8 +364,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Name Prefix',
       maxLength: 255,
       minLength: 1,
-      name: 'name_prefix'
-    } as StringPropertyOptions
+      name: 'name_prefix',
+    } as StringPropertyOptions,
   },
   name_suffix: {
     classification: 'name_suffix',
@@ -376,8 +375,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Name Suffix',
       maxLength: 255,
       minLength: 1,
-      name: 'name_suffix'
-    } as StringPropertyOptions
+      name: 'name_suffix',
+    } as StringPropertyOptions,
   },
   number: {
     classification: 'number',
@@ -385,8 +384,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
     factory: numberPropertyFactory,
     options: {
       displayName: 'Number',
-      name: DEFAULT_NUMBER_PROPERTY_NAME
-    }
+      name: DEFAULT_NUMBER_PROPERTY_NAME,
+    },
   },
   phone_number: {
     classification: 'phone_number',
@@ -396,8 +395,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Phone Number',
       maxLength: 15,
       minLength: 7,
-      name: 'phone_number'
-    } as StringPropertyOptions
+      name: 'phone_number',
+    } as StringPropertyOptions,
   },
   phone_number_extension: {
     classification: 'phone_number_extension',
@@ -407,8 +406,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Phone Number Extension',
       maxLength: 10,
       minLength: 1,
-      name: 'phone_number_extension'
-    } as StringPropertyOptions
+      name: 'phone_number_extension',
+    } as StringPropertyOptions,
   },
   postal_code: {
     classification: 'postal_code',
@@ -418,8 +417,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'Postal Code',
       maxLength: 15,
       minLength: 6,
-      name: 'postal_code'
-    } as StringPropertyOptions
+      name: 'postal_code',
+    } as StringPropertyOptions,
   },
   regexp: {
     classification: 'regexp',
@@ -428,8 +427,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
     options: {
       displayName: 'RegExp',
       mask: DEFAULT_REGEXP_MASK,
-      name: DEFAULT_REGEXP_PROPERTY_NAME
-    } as RegExpPropertyOptions
+      name: DEFAULT_REGEXP_PROPERTY_NAME,
+    } as RegExpPropertyOptions,
   },
   state_province: {
     classification: 'state_province',
@@ -439,8 +438,8 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
       displayName: 'State/Province',
       maxLength: 255,
       minLength: 1,
-      name: 'state_province'
-    } as StringPropertyOptions
+      name: 'state_province',
+    } as StringPropertyOptions,
   },
   string: {
     classification: 'string',
@@ -449,7 +448,7 @@ export const propertyClassificationMap: PropertyDescriptionMap = {
     options: {
       displayName: 'String',
       minLength: 1,
-      name: DEFAULT_STRING_PROPERTY_NAME
-    } as StringPropertyOptions
-  }
+      name: DEFAULT_STRING_PROPERTY_NAME,
+    } as StringPropertyOptions,
+  },
 };

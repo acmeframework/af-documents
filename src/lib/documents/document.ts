@@ -33,7 +33,7 @@ export class Document<
   protected unknownProperties: string[] = [];
 
   constructor(
-    rawData: string | object,
+    rawData: string | object, // eslint-disable-line @typescript-eslint/ban-types
     newOptions?: O,
     protected aliasMap?: PropertyMap
   ) {
@@ -48,7 +48,7 @@ export class Document<
     if (isString(rawData)) {
       this.buildFromJSON(rawData as string);
     } else if (isObject(rawData)) {
-      this.buildFromObject(rawData as object);
+      this.buildFromObject(rawData as object); // eslint-disable-line @typescript-eslint/ban-types
     } else {
       throw new TypeError('rawData not an acceptable type.');
     }
@@ -98,6 +98,7 @@ export class Document<
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   public setEntityValue(entityName: keyof T, value: any): void {
     const prop = this.getEntity(entityName);
     if (isUsable(prop)) {
@@ -138,7 +139,7 @@ export class Document<
   }
 
   protected _normalize(entities: Entity[]): void {
-    entities.forEach(entity => {
+    entities.forEach((entity) => {
       if (entity instanceof Entity) {
         entity.normalize();
       } else {
@@ -167,6 +168,7 @@ export class Document<
     this.buildFromObject(parsedData);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   protected _buildEntity(key: keyof T, value: any): D {
     let prop: Entity | Entity[];
     if (isObject(value)) {
@@ -194,7 +196,7 @@ export class Document<
         } else {
           newEntity = this._buildEntity(key, rawEntity);
         }
-        entities.push((newEntity as Entity)!);
+        entities.push(newEntity as Entity);
       });
       prop = entities;
     } else {
@@ -212,6 +214,7 @@ export class Document<
     return prop as D;
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   protected buildFromObject(rawData: object): void {
     this.data = {} as T;
     const objKeys = Object.keys(rawData as Record<string, any>);

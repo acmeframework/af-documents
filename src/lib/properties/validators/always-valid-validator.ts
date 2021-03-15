@@ -1,6 +1,10 @@
 import { Validator, ValidatorOptions } from './validator';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AlwaysValidValidatorOptions extends ValidatorOptions {}
+
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 export class AlwaysValidValidator<
   T = any,

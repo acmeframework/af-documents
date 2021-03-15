@@ -56,7 +56,7 @@ export const DEFAULT_VALIDATION_WAIT_TIMEOUT = 500;
 export const DEFAULT_ENTITY_OPTIONS: Readonly<EntityOptions> = {
   validationStopOnInvalid: DEFAULT_VALIDATION_STOP_ON_INVALID,
   validationWaitInterval: DEFAULT_VALIDATION_WAIT_INTERVAL,
-  validationWaitTimeout: DEFAULT_VALIDATION_WAIT_TIMEOUT
+  validationWaitTimeout: DEFAULT_VALIDATION_WAIT_TIMEOUT,
 };
 
 /**
@@ -111,7 +111,7 @@ export abstract class Entity<
   }
 
   public abstract normalize(): void;
-  public abstract async validate(): Promise<boolean>;
+  public abstract validate(): Promise<boolean>;
 
   protected _validateOptions(newOptions: O | undefined): void {
     if (isUsable(newOptions)) {
@@ -121,8 +121,7 @@ export abstract class Entity<
         this.options.validationStopOnInvalid = DEFAULT_VALIDATION_STOP_ON_INVALID;
       }
       this.options.validationWaitInterval =
-        this.options.validationWaitInterval ||
-        DEFAULT_VALIDATION_WAIT_INTERVAL;
+        this.options.validationWaitInterval || DEFAULT_VALIDATION_WAIT_INTERVAL;
       this.options.validationWaitTimeout =
         this.options.validationWaitTimeout || DEFAULT_VALIDATION_WAIT_TIMEOUT;
     } else {

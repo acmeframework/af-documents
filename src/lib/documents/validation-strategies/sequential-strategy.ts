@@ -13,9 +13,8 @@ export class SequentialValidationStrategy<
     const objKeys = Object.keys(data);
     let loopValid = true;
     for (const key of objKeys) {
-      let _valid: boolean;
       const entity = data![key];
-      _valid = await this._validateEntity(key, [entity]);
+      const _valid = await this._validateEntity(key, [entity]);
       if (loopValid && !_valid) {
         loopValid = false;
       }

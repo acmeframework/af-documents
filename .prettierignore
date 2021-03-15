@@ -1,10 +1,6 @@
 .nyc_output
-.vscode
 build
-docs
 node_modules
 reports
 
-*.log
-npm-debug.log*
-*.tgz
+package-lock.json

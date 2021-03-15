@@ -57,7 +57,7 @@ export abstract class Normalizer<
       displayName: this.options.displayName!,
       name: this.options.name!,
       previousValue,
-      value: newValue
+      value: newValue,
     };
     this.emit(PROPERTY_NORMALIZE_EVENT, event, this);
 
@@ -66,12 +66,12 @@ export abstract class Normalizer<
 
   protected abstract _normalize(value: T): T;
 
-  protected _validateOptions(newOptions: O | undefined) {
+  protected _validateOptions(newOptions: O | undefined): void {
     const gc = Normalizer.getNextNormalizerCount();
     const defaultOptions: O = {
       displayName: DEFAULT_NORMALIZER_NAME + '_' + gc,
       name: DEFAULT_NORMALIZER_NAME + '_' + gc,
-      parent: undefined
+      parent: undefined,
     } as O;
 
     if (isUsable(newOptions)) {
