@@ -1,6 +1,6 @@
 {
   "name": "af-documents",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A library for managing Documents with Properties",
   "main": "dist/lib/index.js",
   "scripts": {
